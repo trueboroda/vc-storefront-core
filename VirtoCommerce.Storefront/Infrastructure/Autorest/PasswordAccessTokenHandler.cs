@@ -14,8 +14,8 @@ namespace VirtoCommerce.Storefront.Infrastructure.Autorest
     /// </summary>
     public class PasswordAccessTokenHandler : DelegatingHandler
     {
-        private readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
-        private string _accessToken;
+        private static readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
+        private static string _accessToken;
         private bool _disposed;
 
         private readonly PlatformEndpointOptions _options;

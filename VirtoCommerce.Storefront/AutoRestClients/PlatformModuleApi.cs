@@ -323,7 +323,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
                 NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore,
                 ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize,
                 ContractResolver = new ReadOnlyJsonContractResolver(),
-                Converters = new  List<JsonConverter>
+                Converters = new List<JsonConverter>
                     {
                         new Iso8601TimeSpanConverter()
                     }
@@ -559,7 +559,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -571,11 +571,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(criteria != null)
+            if (criteria != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(criteria, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -600,10 +600,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -705,7 +707,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -740,10 +742,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -841,7 +845,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -853,11 +857,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(item != null)
+            if (item != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(item, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -882,10 +886,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -984,7 +990,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -1019,10 +1025,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -1183,127 +1191,127 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
     /// </summary>
     public static partial class AssetEntryOperationsExtensions
     {
-            /// <summary>
-            /// Search for AssetEntries by AssetEntrySearchCriteria
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='criteria'>
-            /// </param>
-            public static AssetEntrySearchResult Search(this IAssetEntryOperations operations, AssetEntrySearchCriteria criteria)
-            {
-                return operations.SearchAsync(criteria).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Search for AssetEntries by AssetEntrySearchCriteria
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='criteria'>
+        /// </param>
+        public static AssetEntrySearchResult Search(this IAssetEntryOperations operations, AssetEntrySearchCriteria criteria)
+        {
+            return operations.SearchAsync(criteria).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Search for AssetEntries by AssetEntrySearchCriteria
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='criteria'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<AssetEntrySearchResult> SearchAsync(this IAssetEntryOperations operations, AssetEntrySearchCriteria criteria, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Search for AssetEntries by AssetEntrySearchCriteria
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='criteria'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<AssetEntrySearchResult> SearchAsync(this IAssetEntryOperations operations, AssetEntrySearchCriteria criteria, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.SearchWithHttpMessagesAsync(criteria, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.SearchWithHttpMessagesAsync(criteria, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get asset details by id
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// </param>
-            public static AssetEntry Get(this IAssetEntryOperations operations, string id)
-            {
-                return operations.GetAsync(id).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get asset details by id
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// </param>
+        public static AssetEntry Get(this IAssetEntryOperations operations, string id)
+        {
+            return operations.GetAsync(id).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get asset details by id
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<AssetEntry> GetAsync(this IAssetEntryOperations operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get asset details by id
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<AssetEntry> GetAsync(this IAssetEntryOperations operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Create / Update asset entry
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='item'>
-            /// </param>
-            public static void Update(this IAssetEntryOperations operations, AssetEntry item)
-            {
-                operations.UpdateAsync(item).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Create / Update asset entry
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='item'>
+        /// </param>
+        public static void Update(this IAssetEntryOperations operations, AssetEntry item)
+        {
+            operations.UpdateAsync(item).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Create / Update asset entry
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='item'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task UpdateAsync(this IAssetEntryOperations operations, AssetEntry item, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.UpdateWithHttpMessagesAsync(item, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Create / Update asset entry
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='item'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task UpdateAsync(this IAssetEntryOperations operations, AssetEntry item, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.UpdateWithHttpMessagesAsync(item, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Delete asset entries by ids
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='ids'>
-            /// </param>
-            public static void Delete(this IAssetEntryOperations operations, IList<string> ids)
-            {
-                operations.DeleteAsync(ids).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Delete asset entries by ids
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='ids'>
+        /// </param>
+        public static void Delete(this IAssetEntryOperations operations, IList<string> ids)
+        {
+            operations.DeleteAsync(ids).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Delete asset entries by ids
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='ids'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task DeleteAsync(this IAssetEntryOperations operations, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.DeleteWithHttpMessagesAsync(ids, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Delete asset entries by ids
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='ids'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task DeleteAsync(this IAssetEntryOperations operations, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.DeleteWithHttpMessagesAsync(ids, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
     }
 }
@@ -1401,7 +1409,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -1436,10 +1444,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -1546,7 +1556,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -1581,10 +1591,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -1718,7 +1730,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -1769,10 +1781,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -1889,7 +1903,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -1924,10 +1938,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -2007,7 +2023,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -2019,11 +2035,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(folder != null)
+            if (folder != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(folder, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -2048,10 +2064,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -2241,187 +2259,187 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
     /// </summary>
     public static partial class AssetsExtensions
     {
-            /// <summary>
-            /// This method used to upload files on local disk storage in special uploads
-            /// folder
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static IList<BlobInfo> UploadAssetToLocalFileSystem(this IAssets operations)
-            {
-                return operations.UploadAssetToLocalFileSystemAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// This method used to upload files on local disk storage in special uploads
+        /// folder
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static IList<BlobInfo> UploadAssetToLocalFileSystem(this IAssets operations)
+        {
+            return operations.UploadAssetToLocalFileSystemAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// This method used to upload files on local disk storage in special uploads
-            /// folder
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<BlobInfo>> UploadAssetToLocalFileSystemAsync(this IAssets operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// This method used to upload files on local disk storage in special uploads
+        /// folder
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<BlobInfo>> UploadAssetToLocalFileSystemAsync(this IAssets operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.UploadAssetToLocalFileSystemWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.UploadAssetToLocalFileSystemWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Search asset folders and blobs
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='folderUrl'>
-            /// </param>
-            /// <param name='keyword'>
-            /// </param>
-            public static IList<AssetListItem> SearchAssetItems(this IAssets operations, string folderUrl = default(string), string keyword = default(string))
-            {
-                return operations.SearchAssetItemsAsync(folderUrl, keyword).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Search asset folders and blobs
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='folderUrl'>
+        /// </param>
+        /// <param name='keyword'>
+        /// </param>
+        public static IList<AssetListItem> SearchAssetItems(this IAssets operations, string folderUrl = default(string), string keyword = default(string))
+        {
+            return operations.SearchAssetItemsAsync(folderUrl, keyword).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Search asset folders and blobs
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='folderUrl'>
-            /// </param>
-            /// <param name='keyword'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<AssetListItem>> SearchAssetItemsAsync(this IAssets operations, string folderUrl = default(string), string keyword = default(string), CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Search asset folders and blobs
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='folderUrl'>
+        /// </param>
+        /// <param name='keyword'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<AssetListItem>> SearchAssetItemsAsync(this IAssets operations, string folderUrl = default(string), string keyword = default(string), CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.SearchAssetItemsWithHttpMessagesAsync(folderUrl, keyword, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.SearchAssetItemsWithHttpMessagesAsync(folderUrl, keyword, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Upload assets to the folder
-            /// </summary>
-            /// <remarks>
-            /// Request body can contain multiple files.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='folderUrl'>
-            /// Parent folder url (relative or absolute).
-            /// </param>
-            /// <param name='url'>
-            /// Url for uploaded remote resource (optional)
-            /// </param>
-            /// <param name='name'>
-            /// File name
-            /// </param>
-            /// <param name='uploadedFile'>
-            /// Upload File
-            /// </param>
-            public static IList<BlobInfo> UploadAsset(this IAssets operations, string folderUrl, string url = default(string), string name = default(string), Stream uploadedFile = default(Stream))
-            {
-                return operations.UploadAssetAsync(folderUrl, url, name, uploadedFile).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Upload assets to the folder
+        /// </summary>
+        /// <remarks>
+        /// Request body can contain multiple files.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='folderUrl'>
+        /// Parent folder url (relative or absolute).
+        /// </param>
+        /// <param name='url'>
+        /// Url for uploaded remote resource (optional)
+        /// </param>
+        /// <param name='name'>
+        /// File name
+        /// </param>
+        /// <param name='uploadedFile'>
+        /// Upload File
+        /// </param>
+        public static IList<BlobInfo> UploadAsset(this IAssets operations, string folderUrl, string url = default(string), string name = default(string), Stream uploadedFile = default(Stream))
+        {
+            return operations.UploadAssetAsync(folderUrl, url, name, uploadedFile).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Upload assets to the folder
-            /// </summary>
-            /// <remarks>
-            /// Request body can contain multiple files.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='folderUrl'>
-            /// Parent folder url (relative or absolute).
-            /// </param>
-            /// <param name='url'>
-            /// Url for uploaded remote resource (optional)
-            /// </param>
-            /// <param name='name'>
-            /// File name
-            /// </param>
-            /// <param name='uploadedFile'>
-            /// Upload File
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<BlobInfo>> UploadAssetAsync(this IAssets operations, string folderUrl, string url = default(string), string name = default(string), Stream uploadedFile = default(Stream), CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Upload assets to the folder
+        /// </summary>
+        /// <remarks>
+        /// Request body can contain multiple files.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='folderUrl'>
+        /// Parent folder url (relative or absolute).
+        /// </param>
+        /// <param name='url'>
+        /// Url for uploaded remote resource (optional)
+        /// </param>
+        /// <param name='name'>
+        /// File name
+        /// </param>
+        /// <param name='uploadedFile'>
+        /// Upload File
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<BlobInfo>> UploadAssetAsync(this IAssets operations, string folderUrl, string url = default(string), string name = default(string), Stream uploadedFile = default(Stream), CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.UploadAssetWithHttpMessagesAsync(folderUrl, url, name, uploadedFile, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.UploadAssetWithHttpMessagesAsync(folderUrl, url, name, uploadedFile, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Delete blobs by urls
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='urls'>
-            /// </param>
-            public static void DeleteBlobs(this IAssets operations, IList<string> urls)
-            {
-                operations.DeleteBlobsAsync(urls).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Delete blobs by urls
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='urls'>
+        /// </param>
+        public static void DeleteBlobs(this IAssets operations, IList<string> urls)
+        {
+            operations.DeleteBlobsAsync(urls).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Delete blobs by urls
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='urls'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task DeleteBlobsAsync(this IAssets operations, IList<string> urls, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.DeleteBlobsWithHttpMessagesAsync(urls, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Delete blobs by urls
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='urls'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task DeleteBlobsAsync(this IAssets operations, IList<string> urls, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.DeleteBlobsWithHttpMessagesAsync(urls, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Create new blob folder
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='folder'>
-            /// </param>
-            public static void CreateBlobFolder(this IAssets operations, BlobFolder folder)
-            {
-                operations.CreateBlobFolderAsync(folder).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Create new blob folder
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='folder'>
+        /// </param>
+        public static void CreateBlobFolder(this IAssets operations, BlobFolder folder)
+        {
+            operations.CreateBlobFolderAsync(folder).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Create new blob folder
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='folder'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task CreateBlobFolderAsync(this IAssets operations, BlobFolder folder, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.CreateBlobFolderWithHttpMessagesAsync(folder, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Create new blob folder
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='folder'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task CreateBlobFolderAsync(this IAssets operations, BlobFolder folder, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.CreateBlobFolderWithHttpMessagesAsync(folder, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
     }
 }
@@ -2528,7 +2546,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -2540,11 +2558,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(tenant != null)
+            if (tenant != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(tenant, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -2569,10 +2587,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -2690,7 +2710,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -2725,10 +2745,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -2869,65 +2891,65 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
     /// </summary>
     public static partial class ChangeLogExtensions
     {
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='tenant'>
-            /// </param>
-            public static IList<OperationLog> SearchObjectChangeHistory(this IChangeLog operations, TenantIdentity tenant)
-            {
-                return operations.SearchObjectChangeHistoryAsync(tenant).GetAwaiter().GetResult();
-            }
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='tenant'>
+        /// </param>
+        public static IList<OperationLog> SearchObjectChangeHistory(this IChangeLog operations, TenantIdentity tenant)
+        {
+            return operations.SearchObjectChangeHistoryAsync(tenant).GetAwaiter().GetResult();
+        }
 
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='tenant'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<OperationLog>> SearchObjectChangeHistoryAsync(this IChangeLog operations, TenantIdentity tenant, CancellationToken cancellationToken = default(CancellationToken))
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='tenant'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<OperationLog>> SearchObjectChangeHistoryAsync(this IChangeLog operations, TenantIdentity tenant, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.SearchObjectChangeHistoryWithHttpMessagesAsync(tenant, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.SearchObjectChangeHistoryWithHttpMessagesAsync(tenant, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='type'>
-            /// </param>
-            /// <param name='start'>
-            /// </param>
-            /// <param name='end'>
-            /// </param>
-            public static IList<OperationLog> SearchTypeChangeHistory(this IChangeLog operations, string type, System.DateTime? start = default(System.DateTime?), System.DateTime? end = default(System.DateTime?))
-            {
-                return operations.SearchTypeChangeHistoryAsync(type, start, end).GetAwaiter().GetResult();
-            }
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='type'>
+        /// </param>
+        /// <param name='start'>
+        /// </param>
+        /// <param name='end'>
+        /// </param>
+        public static IList<OperationLog> SearchTypeChangeHistory(this IChangeLog operations, string type, System.DateTime? start = default(System.DateTime?), System.DateTime? end = default(System.DateTime?))
+        {
+            return operations.SearchTypeChangeHistoryAsync(type, start, end).GetAwaiter().GetResult();
+        }
 
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='type'>
-            /// </param>
-            /// <param name='start'>
-            /// </param>
-            /// <param name='end'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<OperationLog>> SearchTypeChangeHistoryAsync(this IChangeLog operations, string type, System.DateTime? start = default(System.DateTime?), System.DateTime? end = default(System.DateTime?), CancellationToken cancellationToken = default(CancellationToken))
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='type'>
+        /// </param>
+        /// <param name='start'>
+        /// </param>
+        /// <param name='end'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<OperationLog>> SearchTypeChangeHistoryAsync(this IChangeLog operations, string type, System.DateTime? start = default(System.DateTime?), System.DateTime? end = default(System.DateTime?), CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.SearchTypeChangeHistoryWithHttpMessagesAsync(type, start, end, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.SearchTypeChangeHistoryWithHttpMessagesAsync(type, start, end, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
     }
 }
@@ -3024,7 +3046,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -3059,10 +3081,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -3164,7 +3188,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -3199,10 +3223,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -3311,7 +3337,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -3323,11 +3349,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(property != null)
+            if (property != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(property, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -3352,10 +3378,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -3469,7 +3497,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -3481,11 +3509,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(property != null)
+            if (property != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(property, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -3510,10 +3538,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -3602,7 +3632,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -3637,10 +3667,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -3732,7 +3764,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -3767,10 +3799,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -3888,7 +3922,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -3900,11 +3934,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(items != null)
+            if (items != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(items, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -3929,10 +3963,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -4048,7 +4084,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -4083,10 +4119,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -4343,291 +4381,291 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
     /// </summary>
     public static partial class DynamicPropertiesExtensions
     {
-            /// <summary>
-            /// Get object types which support dynamic properties
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static IList<string> GetObjectTypes(this IDynamicProperties operations)
-            {
-                return operations.GetObjectTypesAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get object types which support dynamic properties
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static IList<string> GetObjectTypes(this IDynamicProperties operations)
+        {
+            return operations.GetObjectTypesAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get object types which support dynamic properties
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<string>> GetObjectTypesAsync(this IDynamicProperties operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get object types which support dynamic properties
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<string>> GetObjectTypesAsync(this IDynamicProperties operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetObjectTypesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetObjectTypesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get dynamic properties registered for object type
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            public static IList<DynamicProperty> GetProperties(this IDynamicProperties operations, string typeName)
-            {
-                return operations.GetPropertiesAsync(typeName).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get dynamic properties registered for object type
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        public static IList<DynamicProperty> GetProperties(this IDynamicProperties operations, string typeName)
+        {
+            return operations.GetPropertiesAsync(typeName).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get dynamic properties registered for object type
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<DynamicProperty>> GetPropertiesAsync(this IDynamicProperties operations, string typeName, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get dynamic properties registered for object type
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<DynamicProperty>> GetPropertiesAsync(this IDynamicProperties operations, string typeName, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetPropertiesWithHttpMessagesAsync(typeName, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetPropertiesWithHttpMessagesAsync(typeName, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Add new dynamic property
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='property'>
-            /// </param>
-            public static DynamicProperty CreateProperty(this IDynamicProperties operations, string typeName, DynamicProperty property)
-            {
-                return operations.CreatePropertyAsync(typeName, property).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Add new dynamic property
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='property'>
+        /// </param>
+        public static DynamicProperty CreateProperty(this IDynamicProperties operations, string typeName, DynamicProperty property)
+        {
+            return operations.CreatePropertyAsync(typeName, property).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Add new dynamic property
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='property'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<DynamicProperty> CreatePropertyAsync(this IDynamicProperties operations, string typeName, DynamicProperty property, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Add new dynamic property
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='property'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<DynamicProperty> CreatePropertyAsync(this IDynamicProperties operations, string typeName, DynamicProperty property, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.CreatePropertyWithHttpMessagesAsync(typeName, property, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.CreatePropertyWithHttpMessagesAsync(typeName, property, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Update existing dynamic property
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='propertyId'>
-            /// </param>
-            /// <param name='property'>
-            /// </param>
-            public static void UpdateProperty(this IDynamicProperties operations, string typeName, string propertyId, DynamicProperty property)
-            {
-                operations.UpdatePropertyAsync(typeName, propertyId, property).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Update existing dynamic property
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='propertyId'>
+        /// </param>
+        /// <param name='property'>
+        /// </param>
+        public static void UpdateProperty(this IDynamicProperties operations, string typeName, string propertyId, DynamicProperty property)
+        {
+            operations.UpdatePropertyAsync(typeName, propertyId, property).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Update existing dynamic property
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='propertyId'>
-            /// </param>
-            /// <param name='property'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task UpdatePropertyAsync(this IDynamicProperties operations, string typeName, string propertyId, DynamicProperty property, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.UpdatePropertyWithHttpMessagesAsync(typeName, propertyId, property, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Update existing dynamic property
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='propertyId'>
+        /// </param>
+        /// <param name='property'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task UpdatePropertyAsync(this IDynamicProperties operations, string typeName, string propertyId, DynamicProperty property, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.UpdatePropertyWithHttpMessagesAsync(typeName, propertyId, property, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Delete dynamic property
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='propertyId'>
-            /// </param>
-            public static void DeleteProperty(this IDynamicProperties operations, string typeName, string propertyId)
-            {
-                operations.DeletePropertyAsync(typeName, propertyId).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Delete dynamic property
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='propertyId'>
+        /// </param>
+        public static void DeleteProperty(this IDynamicProperties operations, string typeName, string propertyId)
+        {
+            operations.DeletePropertyAsync(typeName, propertyId).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Delete dynamic property
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='propertyId'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task DeletePropertyAsync(this IDynamicProperties operations, string typeName, string propertyId, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.DeletePropertyWithHttpMessagesAsync(typeName, propertyId, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Delete dynamic property
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='propertyId'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task DeletePropertyAsync(this IDynamicProperties operations, string typeName, string propertyId, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.DeletePropertyWithHttpMessagesAsync(typeName, propertyId, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Get dictionary items
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='propertyId'>
-            /// </param>
-            public static IList<DynamicPropertyDictionaryItem> GetDictionaryItems(this IDynamicProperties operations, string typeName, string propertyId)
-            {
-                return operations.GetDictionaryItemsAsync(typeName, propertyId).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get dictionary items
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='propertyId'>
+        /// </param>
+        public static IList<DynamicPropertyDictionaryItem> GetDictionaryItems(this IDynamicProperties operations, string typeName, string propertyId)
+        {
+            return operations.GetDictionaryItemsAsync(typeName, propertyId).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get dictionary items
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='propertyId'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<DynamicPropertyDictionaryItem>> GetDictionaryItemsAsync(this IDynamicProperties operations, string typeName, string propertyId, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get dictionary items
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='propertyId'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<DynamicPropertyDictionaryItem>> GetDictionaryItemsAsync(this IDynamicProperties operations, string typeName, string propertyId, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetDictionaryItemsWithHttpMessagesAsync(typeName, propertyId, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetDictionaryItemsWithHttpMessagesAsync(typeName, propertyId, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Add or update dictionary items
-            /// </summary>
-            /// <remarks>
-            /// Fill item ID to update existing item or leave it empty to create a new
-            /// item.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='propertyId'>
-            /// </param>
-            /// <param name='items'>
-            /// </param>
-            public static void SaveDictionaryItems(this IDynamicProperties operations, string typeName, string propertyId, IList<DynamicPropertyDictionaryItem> items)
-            {
-                operations.SaveDictionaryItemsAsync(typeName, propertyId, items).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Add or update dictionary items
+        /// </summary>
+        /// <remarks>
+        /// Fill item ID to update existing item or leave it empty to create a new
+        /// item.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='propertyId'>
+        /// </param>
+        /// <param name='items'>
+        /// </param>
+        public static void SaveDictionaryItems(this IDynamicProperties operations, string typeName, string propertyId, IList<DynamicPropertyDictionaryItem> items)
+        {
+            operations.SaveDictionaryItemsAsync(typeName, propertyId, items).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Add or update dictionary items
-            /// </summary>
-            /// <remarks>
-            /// Fill item ID to update existing item or leave it empty to create a new
-            /// item.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='propertyId'>
-            /// </param>
-            /// <param name='items'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task SaveDictionaryItemsAsync(this IDynamicProperties operations, string typeName, string propertyId, IList<DynamicPropertyDictionaryItem> items, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.SaveDictionaryItemsWithHttpMessagesAsync(typeName, propertyId, items, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Add or update dictionary items
+        /// </summary>
+        /// <remarks>
+        /// Fill item ID to update existing item or leave it empty to create a new
+        /// item.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='propertyId'>
+        /// </param>
+        /// <param name='items'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task SaveDictionaryItemsAsync(this IDynamicProperties operations, string typeName, string propertyId, IList<DynamicPropertyDictionaryItem> items, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.SaveDictionaryItemsWithHttpMessagesAsync(typeName, propertyId, items, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Delete dictionary items
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='propertyId'>
-            /// </param>
-            /// <param name='ids'>
-            /// IDs of dictionary items to delete.
-            /// </param>
-            public static void DeleteDictionaryItem(this IDynamicProperties operations, string typeName, string propertyId, IList<string> ids)
-            {
-                operations.DeleteDictionaryItemAsync(typeName, propertyId, ids).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Delete dictionary items
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='propertyId'>
+        /// </param>
+        /// <param name='ids'>
+        /// IDs of dictionary items to delete.
+        /// </param>
+        public static void DeleteDictionaryItem(this IDynamicProperties operations, string typeName, string propertyId, IList<string> ids)
+        {
+            operations.DeleteDictionaryItemAsync(typeName, propertyId, ids).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Delete dictionary items
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='typeName'>
-            /// </param>
-            /// <param name='propertyId'>
-            /// </param>
-            /// <param name='ids'>
-            /// IDs of dictionary items to delete.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task DeleteDictionaryItemAsync(this IDynamicProperties operations, string typeName, string propertyId, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.DeleteDictionaryItemWithHttpMessagesAsync(typeName, propertyId, ids, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Delete dictionary items
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='typeName'>
+        /// </param>
+        /// <param name='propertyId'>
+        /// </param>
+        /// <param name='ids'>
+        /// IDs of dictionary items to delete.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task DeleteDictionaryItemAsync(this IDynamicProperties operations, string typeName, string propertyId, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.DeleteDictionaryItemWithHttpMessagesAsync(typeName, propertyId, ids, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
     }
 }
@@ -4739,7 +4777,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -4774,10 +4812,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -4900,39 +4940,39 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
     /// </summary>
     public static partial class JobsExtensions
     {
-            /// <summary>
-            /// Get background job status
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// Job ID.
-            /// </param>
-            public static Job GetStatus(this IJobs operations, string id)
-            {
-                return operations.GetStatusAsync(id).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get background job status
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// Job ID.
+        /// </param>
+        public static Job GetStatus(this IJobs operations, string id)
+        {
+            return operations.GetStatusAsync(id).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get background job status
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// Job ID.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<Job> GetStatusAsync(this IJobs operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get background job status
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// Job ID.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<Job> GetStatusAsync(this IJobs operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetStatusWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetStatusWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
     }
 }
@@ -5029,7 +5069,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -5064,10 +5104,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -5155,7 +5197,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -5190,10 +5232,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -5326,61 +5370,61 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
     /// </summary>
     public static partial class LocalizationExtensions
     {
-            /// <summary>
-            /// Return all available locales
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static IList<string> GetLocales(this ILocalization operations)
-            {
-                return operations.GetLocalesAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Return all available locales
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static IList<string> GetLocales(this ILocalization operations)
+        {
+            return operations.GetLocalesAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Return all available locales
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<string>> GetLocalesAsync(this ILocalization operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Return all available locales
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<string>> GetLocalesAsync(this ILocalization operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetLocalesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetLocalesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Return all available regional formats
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static IList<string> GetRegionalFormats(this ILocalization operations)
-            {
-                return operations.GetRegionalFormatsAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Return all available regional formats
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static IList<string> GetRegionalFormats(this ILocalization operations)
+        {
+            return operations.GetRegionalFormatsAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Return all available regional formats
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<string>> GetRegionalFormatsAsync(this ILocalization operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Return all available regional formats
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<string>> GetRegionalFormatsAsync(this ILocalization operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetRegionalFormatsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetRegionalFormatsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
     }
 }
@@ -5474,7 +5518,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -5509,10 +5553,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -5582,7 +5628,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -5617,10 +5663,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -5722,7 +5770,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -5734,11 +5782,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(moduleDescriptors != null)
+            if (moduleDescriptors != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(moduleDescriptors, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -5763,10 +5811,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -5868,7 +5918,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -5880,11 +5930,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(moduleDescriptors != null)
+            if (moduleDescriptors != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(moduleDescriptors, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -5909,10 +5959,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -6000,7 +6052,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -6035,10 +6087,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -6140,7 +6194,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -6152,11 +6206,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(modules != null)
+            if (modules != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(modules, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -6181,10 +6235,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -6286,7 +6342,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -6298,11 +6354,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(modules != null)
+            if (modules != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(modules, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -6327,10 +6383,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -6415,7 +6473,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -6450,10 +6508,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -6523,7 +6583,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -6558,10 +6618,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -6825,275 +6887,275 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
     /// </summary>
     public static partial class ModulesExtensions
     {
-            /// <summary>
-            /// Reload  modules
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static void ReloadModules(this IModules operations)
-            {
-                operations.ReloadModulesAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Reload  modules
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static void ReloadModules(this IModules operations)
+        {
+            operations.ReloadModulesAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Reload  modules
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task ReloadModulesAsync(this IModules operations, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.ReloadModulesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Reload  modules
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task ReloadModulesAsync(this IModules operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.ReloadModulesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Get installed modules
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static IList<ModuleDescriptor> GetModules(this IModules operations)
-            {
-                return operations.GetModulesAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get installed modules
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static IList<ModuleDescriptor> GetModules(this IModules operations)
+        {
+            return operations.GetModulesAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get installed modules
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<ModuleDescriptor>> GetModulesAsync(this IModules operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get installed modules
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<ModuleDescriptor>> GetModulesAsync(this IModules operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetModulesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetModulesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get all dependent modules for module
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='moduleDescriptors'>
-            /// modules descriptors
-            /// </param>
-            public static IList<ModuleDescriptor> GetDependingModules(this IModules operations, IList<ModuleDescriptor> moduleDescriptors)
-            {
-                return operations.GetDependingModulesAsync(moduleDescriptors).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get all dependent modules for module
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='moduleDescriptors'>
+        /// modules descriptors
+        /// </param>
+        public static IList<ModuleDescriptor> GetDependingModules(this IModules operations, IList<ModuleDescriptor> moduleDescriptors)
+        {
+            return operations.GetDependingModulesAsync(moduleDescriptors).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get all dependent modules for module
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='moduleDescriptors'>
-            /// modules descriptors
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<ModuleDescriptor>> GetDependingModulesAsync(this IModules operations, IList<ModuleDescriptor> moduleDescriptors, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get all dependent modules for module
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='moduleDescriptors'>
+        /// modules descriptors
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<ModuleDescriptor>> GetDependingModulesAsync(this IModules operations, IList<ModuleDescriptor> moduleDescriptors, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetDependingModulesWithHttpMessagesAsync(moduleDescriptors, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetDependingModulesWithHttpMessagesAsync(moduleDescriptors, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Returns a flat expanded  list of modules that depend on passed modules
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='moduleDescriptors'>
-            /// modules descriptors
-            /// </param>
-            public static IList<ModuleDescriptor> GetMissingDependencies(this IModules operations, IList<ModuleDescriptor> moduleDescriptors)
-            {
-                return operations.GetMissingDependenciesAsync(moduleDescriptors).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Returns a flat expanded  list of modules that depend on passed modules
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='moduleDescriptors'>
+        /// modules descriptors
+        /// </param>
+        public static IList<ModuleDescriptor> GetMissingDependencies(this IModules operations, IList<ModuleDescriptor> moduleDescriptors)
+        {
+            return operations.GetMissingDependenciesAsync(moduleDescriptors).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Returns a flat expanded  list of modules that depend on passed modules
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='moduleDescriptors'>
-            /// modules descriptors
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<ModuleDescriptor>> GetMissingDependenciesAsync(this IModules operations, IList<ModuleDescriptor> moduleDescriptors, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Returns a flat expanded  list of modules that depend on passed modules
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='moduleDescriptors'>
+        /// modules descriptors
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<ModuleDescriptor>> GetMissingDependenciesAsync(this IModules operations, IList<ModuleDescriptor> moduleDescriptors, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetMissingDependenciesWithHttpMessagesAsync(moduleDescriptors, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetMissingDependenciesWithHttpMessagesAsync(moduleDescriptors, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Upload module package for installation or update
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static ModuleDescriptor UploadModuleArchive(this IModules operations)
-            {
-                return operations.UploadModuleArchiveAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Upload module package for installation or update
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static ModuleDescriptor UploadModuleArchive(this IModules operations)
+        {
+            return operations.UploadModuleArchiveAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Upload module package for installation or update
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<ModuleDescriptor> UploadModuleArchiveAsync(this IModules operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Upload module package for installation or update
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<ModuleDescriptor> UploadModuleArchiveAsync(this IModules operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.UploadModuleArchiveWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.UploadModuleArchiveWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Install modules
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='modules'>
-            /// modules for install
-            /// </param>
-            public static ModulePushNotification InstallModules(this IModules operations, IList<ModuleDescriptor> modules)
-            {
-                return operations.InstallModulesAsync(modules).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Install modules
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='modules'>
+        /// modules for install
+        /// </param>
+        public static ModulePushNotification InstallModules(this IModules operations, IList<ModuleDescriptor> modules)
+        {
+            return operations.InstallModulesAsync(modules).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Install modules
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='modules'>
-            /// modules for install
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<ModulePushNotification> InstallModulesAsync(this IModules operations, IList<ModuleDescriptor> modules, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Install modules
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='modules'>
+        /// modules for install
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<ModulePushNotification> InstallModulesAsync(this IModules operations, IList<ModuleDescriptor> modules, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.InstallModulesWithHttpMessagesAsync(modules, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.InstallModulesWithHttpMessagesAsync(modules, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Uninstall module
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='modules'>
-            /// modules
-            /// </param>
-            public static ModulePushNotification UninstallModule(this IModules operations, IList<ModuleDescriptor> modules)
-            {
-                return operations.UninstallModuleAsync(modules).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Uninstall module
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='modules'>
+        /// modules
+        /// </param>
+        public static ModulePushNotification UninstallModule(this IModules operations, IList<ModuleDescriptor> modules)
+        {
+            return operations.UninstallModuleAsync(modules).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Uninstall module
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='modules'>
-            /// modules
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<ModulePushNotification> UninstallModuleAsync(this IModules operations, IList<ModuleDescriptor> modules, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Uninstall module
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='modules'>
+        /// modules
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<ModulePushNotification> UninstallModuleAsync(this IModules operations, IList<ModuleDescriptor> modules, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.UninstallModuleWithHttpMessagesAsync(modules, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.UninstallModuleWithHttpMessagesAsync(modules, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Restart web application
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static void Restart(this IModules operations)
-            {
-                operations.RestartAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Restart web application
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static void Restart(this IModules operations)
+        {
+            operations.RestartAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Restart web application
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task RestartAsync(this IModules operations, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.RestartWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Restart web application
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task RestartAsync(this IModules operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.RestartWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Auto-install modules with specified groups
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static ModuleAutoInstallPushNotification TryToAutoInstallModules(this IModules operations)
-            {
-                return operations.TryToAutoInstallModulesAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Auto-install modules with specified groups
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static ModuleAutoInstallPushNotification TryToAutoInstallModules(this IModules operations)
+        {
+            return operations.TryToAutoInstallModulesAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Auto-install modules with specified groups
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<ModuleAutoInstallPushNotification> TryToAutoInstallModulesAsync(this IModules operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Auto-install modules with specified groups
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<ModuleAutoInstallPushNotification> TryToAutoInstallModulesAsync(this IModules operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.TryToAutoInstallModulesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.TryToAutoInstallModulesWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
     }
 }
@@ -7193,7 +7255,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -7228,10 +7290,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -7330,7 +7394,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -7365,10 +7429,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -7468,7 +7534,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -7503,10 +7569,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -7631,7 +7699,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -7666,10 +7734,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -7768,7 +7838,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -7780,11 +7850,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(notificationTemplate != null)
+            if (notificationTemplate != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(notificationTemplate, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -7809,10 +7879,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -7929,7 +8001,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -7964,10 +8036,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -8074,7 +8148,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -8109,10 +8183,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -8220,7 +8296,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -8232,11 +8308,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(request != null)
+            if (request != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(request, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -8261,10 +8337,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -8374,7 +8452,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -8386,11 +8464,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(request != null)
+            if (request != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(request, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -8415,10 +8493,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -8563,7 +8643,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -8598,10 +8678,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -8728,7 +8810,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -8763,10 +8845,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -8869,7 +8953,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -8904,10 +8988,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -9006,7 +9092,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -9018,11 +9104,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(ids != null)
+            if (ids != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(ids, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -9047,10 +9133,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -9484,588 +9572,588 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
     /// </summary>
     public static partial class NotificationsExtensions
     {
-            /// <summary>
-            /// Get all registered notification types
-            /// </summary>
-            /// <remarks>
-            /// Get all registered notification types in platform
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static IList<Notification> GetNotifications(this INotifications operations)
-            {
-                return operations.GetNotificationsAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get all registered notification types
+        /// </summary>
+        /// <remarks>
+        /// Get all registered notification types in platform
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static IList<Notification> GetNotifications(this INotifications operations)
+        {
+            return operations.GetNotificationsAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get all registered notification types
-            /// </summary>
-            /// <remarks>
-            /// Get all registered notification types in platform
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<Notification>> GetNotificationsAsync(this INotifications operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get all registered notification types
+        /// </summary>
+        /// <remarks>
+        /// Get all registered notification types in platform
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<Notification>> GetNotificationsAsync(this INotifications operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetNotificationsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetNotificationsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// </param>
-            public static NotificationTemplate GetNotificationTemplateById(this INotifications operations, string id)
-            {
-                return operations.GetNotificationTemplateByIdAsync(id).GetAwaiter().GetResult();
-            }
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// </param>
+        public static NotificationTemplate GetNotificationTemplateById(this INotifications operations, string id)
+        {
+            return operations.GetNotificationTemplateByIdAsync(id).GetAwaiter().GetResult();
+        }
 
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<NotificationTemplate> GetNotificationTemplateByIdAsync(this INotifications operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<NotificationTemplate> GetNotificationTemplateByIdAsync(this INotifications operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetNotificationTemplateByIdWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetNotificationTemplateByIdWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Delete notification template
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// Template id
-            /// </param>
-            public static void DeleteNotificationTemplate(this INotifications operations, string id)
-            {
-                operations.DeleteNotificationTemplateAsync(id).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Delete notification template
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// Template id
+        /// </param>
+        public static void DeleteNotificationTemplate(this INotifications operations, string id)
+        {
+            operations.DeleteNotificationTemplateAsync(id).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Delete notification template
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// Template id
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task DeleteNotificationTemplateAsync(this INotifications operations, string id, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.DeleteNotificationTemplateWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Delete notification template
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// Template id
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task DeleteNotificationTemplateAsync(this INotifications operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.DeleteNotificationTemplateWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Get notification template
-            /// </summary>
-            /// <remarks>
-            /// Get notification template by notification type, objectId, objectTypeId and
-            /// language. Object id and object type id - params of object, that initialize
-            /// creating of
-            /// template. By default object id and object type id = "Platform". For example
-            /// for store with id = "SampleStore", objectId = "SampleStore", objectTypeId =
-            /// "Store".
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='type'>
-            /// Notification type of template
-            /// </param>
-            /// <param name='objectId'>
-            /// Object id of template
-            /// </param>
-            /// <param name='objectTypeId'>
-            /// Object type id of template
-            /// </param>
-            /// <param name='language'>
-            /// Locale of template
-            /// </param>
-            public static NotificationTemplate GetNotificationTemplate(this INotifications operations, string type, string objectId = default(string), string objectTypeId = default(string), string language = default(string))
-            {
-                return operations.GetNotificationTemplateAsync(type, objectId, objectTypeId, language).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get notification template
+        /// </summary>
+        /// <remarks>
+        /// Get notification template by notification type, objectId, objectTypeId and
+        /// language. Object id and object type id - params of object, that initialize
+        /// creating of
+        /// template. By default object id and object type id = "Platform". For example
+        /// for store with id = "SampleStore", objectId = "SampleStore", objectTypeId =
+        /// "Store".
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='type'>
+        /// Notification type of template
+        /// </param>
+        /// <param name='objectId'>
+        /// Object id of template
+        /// </param>
+        /// <param name='objectTypeId'>
+        /// Object type id of template
+        /// </param>
+        /// <param name='language'>
+        /// Locale of template
+        /// </param>
+        public static NotificationTemplate GetNotificationTemplate(this INotifications operations, string type, string objectId = default(string), string objectTypeId = default(string), string language = default(string))
+        {
+            return operations.GetNotificationTemplateAsync(type, objectId, objectTypeId, language).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get notification template
-            /// </summary>
-            /// <remarks>
-            /// Get notification template by notification type, objectId, objectTypeId and
-            /// language. Object id and object type id - params of object, that initialize
-            /// creating of
-            /// template. By default object id and object type id = "Platform". For example
-            /// for store with id = "SampleStore", objectId = "SampleStore", objectTypeId =
-            /// "Store".
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='type'>
-            /// Notification type of template
-            /// </param>
-            /// <param name='objectId'>
-            /// Object id of template
-            /// </param>
-            /// <param name='objectTypeId'>
-            /// Object type id of template
-            /// </param>
-            /// <param name='language'>
-            /// Locale of template
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<NotificationTemplate> GetNotificationTemplateAsync(this INotifications operations, string type, string objectId = default(string), string objectTypeId = default(string), string language = default(string), CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get notification template
+        /// </summary>
+        /// <remarks>
+        /// Get notification template by notification type, objectId, objectTypeId and
+        /// language. Object id and object type id - params of object, that initialize
+        /// creating of
+        /// template. By default object id and object type id = "Platform". For example
+        /// for store with id = "SampleStore", objectId = "SampleStore", objectTypeId =
+        /// "Store".
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='type'>
+        /// Notification type of template
+        /// </param>
+        /// <param name='objectId'>
+        /// Object id of template
+        /// </param>
+        /// <param name='objectTypeId'>
+        /// Object type id of template
+        /// </param>
+        /// <param name='language'>
+        /// Locale of template
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<NotificationTemplate> GetNotificationTemplateAsync(this INotifications operations, string type, string objectId = default(string), string objectTypeId = default(string), string language = default(string), CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetNotificationTemplateWithHttpMessagesAsync(type, objectId, objectTypeId, language, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetNotificationTemplateWithHttpMessagesAsync(type, objectId, objectTypeId, language, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Update notification template
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='notificationTemplate'>
-            /// Notification template
-            /// </param>
-            public static void UpdateNotificationTemplate(this INotifications operations, NotificationTemplate notificationTemplate)
-            {
-                operations.UpdateNotificationTemplateAsync(notificationTemplate).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Update notification template
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='notificationTemplate'>
+        /// Notification template
+        /// </param>
+        public static void UpdateNotificationTemplate(this INotifications operations, NotificationTemplate notificationTemplate)
+        {
+            operations.UpdateNotificationTemplateAsync(notificationTemplate).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Update notification template
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='notificationTemplate'>
-            /// Notification template
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task UpdateNotificationTemplateAsync(this INotifications operations, NotificationTemplate notificationTemplate, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.UpdateNotificationTemplateWithHttpMessagesAsync(notificationTemplate, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Update notification template
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='notificationTemplate'>
+        /// Notification template
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task UpdateNotificationTemplateAsync(this INotifications operations, NotificationTemplate notificationTemplate, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.UpdateNotificationTemplateWithHttpMessagesAsync(notificationTemplate, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Get notification templates
-            /// </summary>
-            /// <remarks>
-            /// Get all notification templates by notification type, objectId,
-            /// objectTypeId. Object id and object type id - params of object, that
-            /// initialize creating of
-            /// template. By default object id and object type id = "Platform". For example
-            /// for store with id = "SampleStore", objectId = "SampleStore", objectTypeId =
-            /// "Store".
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='type'>
-            /// Notification type of template
-            /// </param>
-            /// <param name='objectId'>
-            /// Object id of template
-            /// </param>
-            /// <param name='objectTypeId'>
-            /// Object type id of template
-            /// </param>
-            public static IList<NotificationTemplate> GetNotificationTemplates(this INotifications operations, string type, string objectId = default(string), string objectTypeId = default(string))
-            {
-                return operations.GetNotificationTemplatesAsync(type, objectId, objectTypeId).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get notification templates
+        /// </summary>
+        /// <remarks>
+        /// Get all notification templates by notification type, objectId,
+        /// objectTypeId. Object id and object type id - params of object, that
+        /// initialize creating of
+        /// template. By default object id and object type id = "Platform". For example
+        /// for store with id = "SampleStore", objectId = "SampleStore", objectTypeId =
+        /// "Store".
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='type'>
+        /// Notification type of template
+        /// </param>
+        /// <param name='objectId'>
+        /// Object id of template
+        /// </param>
+        /// <param name='objectTypeId'>
+        /// Object type id of template
+        /// </param>
+        public static IList<NotificationTemplate> GetNotificationTemplates(this INotifications operations, string type, string objectId = default(string), string objectTypeId = default(string))
+        {
+            return operations.GetNotificationTemplatesAsync(type, objectId, objectTypeId).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get notification templates
-            /// </summary>
-            /// <remarks>
-            /// Get all notification templates by notification type, objectId,
-            /// objectTypeId. Object id and object type id - params of object, that
-            /// initialize creating of
-            /// template. By default object id and object type id = "Platform". For example
-            /// for store with id = "SampleStore", objectId = "SampleStore", objectTypeId =
-            /// "Store".
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='type'>
-            /// Notification type of template
-            /// </param>
-            /// <param name='objectId'>
-            /// Object id of template
-            /// </param>
-            /// <param name='objectTypeId'>
-            /// Object type id of template
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<NotificationTemplate>> GetNotificationTemplatesAsync(this INotifications operations, string type, string objectId = default(string), string objectTypeId = default(string), CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get notification templates
+        /// </summary>
+        /// <remarks>
+        /// Get all notification templates by notification type, objectId,
+        /// objectTypeId. Object id and object type id - params of object, that
+        /// initialize creating of
+        /// template. By default object id and object type id = "Platform". For example
+        /// for store with id = "SampleStore", objectId = "SampleStore", objectTypeId =
+        /// "Store".
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='type'>
+        /// Notification type of template
+        /// </param>
+        /// <param name='objectId'>
+        /// Object id of template
+        /// </param>
+        /// <param name='objectTypeId'>
+        /// Object type id of template
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<NotificationTemplate>> GetNotificationTemplatesAsync(this INotifications operations, string type, string objectId = default(string), string objectTypeId = default(string), CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetNotificationTemplatesWithHttpMessagesAsync(type, objectId, objectTypeId, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetNotificationTemplatesWithHttpMessagesAsync(type, objectId, objectTypeId, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get testing parameters
-            /// </summary>
-            /// <remarks>
-            /// Method returns notification properties, that defined in notification class,
-            /// this properties used in notification template.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='type'>
-            /// Notification type
-            /// </param>
-            public static IList<NotificationParameter> GetTestingParameters(this INotifications operations, string type)
-            {
-                return operations.GetTestingParametersAsync(type).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get testing parameters
+        /// </summary>
+        /// <remarks>
+        /// Method returns notification properties, that defined in notification class,
+        /// this properties used in notification template.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='type'>
+        /// Notification type
+        /// </param>
+        public static IList<NotificationParameter> GetTestingParameters(this INotifications operations, string type)
+        {
+            return operations.GetTestingParametersAsync(type).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get testing parameters
-            /// </summary>
-            /// <remarks>
-            /// Method returns notification properties, that defined in notification class,
-            /// this properties used in notification template.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='type'>
-            /// Notification type
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<NotificationParameter>> GetTestingParametersAsync(this INotifications operations, string type, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get testing parameters
+        /// </summary>
+        /// <remarks>
+        /// Method returns notification properties, that defined in notification class,
+        /// this properties used in notification template.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='type'>
+        /// Notification type
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<NotificationParameter>> GetTestingParametersAsync(this INotifications operations, string type, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetTestingParametersWithHttpMessagesAsync(type, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetTestingParametersWithHttpMessagesAsync(type, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get rendered notification content
-            /// </summary>
-            /// <remarks>
-            /// Method returns rendered content, that based on notification template.
-            /// Template for rendering chosen by type, objectId, objectTypeId, language.
-            /// Parameters for template may be prepared by the method of
-            /// getTestingParameters.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='request'>
-            /// Test notification request
-            /// </param>
-            public static RenderNotificationContentResult RenderNotificationContent(this INotifications operations, TestNotificationRequest request)
-            {
-                return operations.RenderNotificationContentAsync(request).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get rendered notification content
+        /// </summary>
+        /// <remarks>
+        /// Method returns rendered content, that based on notification template.
+        /// Template for rendering chosen by type, objectId, objectTypeId, language.
+        /// Parameters for template may be prepared by the method of
+        /// getTestingParameters.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='request'>
+        /// Test notification request
+        /// </param>
+        public static RenderNotificationContentResult RenderNotificationContent(this INotifications operations, TestNotificationRequest request)
+        {
+            return operations.RenderNotificationContentAsync(request).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get rendered notification content
-            /// </summary>
-            /// <remarks>
-            /// Method returns rendered content, that based on notification template.
-            /// Template for rendering chosen by type, objectId, objectTypeId, language.
-            /// Parameters for template may be prepared by the method of
-            /// getTestingParameters.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='request'>
-            /// Test notification request
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<RenderNotificationContentResult> RenderNotificationContentAsync(this INotifications operations, TestNotificationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get rendered notification content
+        /// </summary>
+        /// <remarks>
+        /// Method returns rendered content, that based on notification template.
+        /// Template for rendering chosen by type, objectId, objectTypeId, language.
+        /// Parameters for template may be prepared by the method of
+        /// getTestingParameters.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='request'>
+        /// Test notification request
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<RenderNotificationContentResult> RenderNotificationContentAsync(this INotifications operations, TestNotificationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.RenderNotificationContentWithHttpMessagesAsync(request, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.RenderNotificationContentWithHttpMessagesAsync(request, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Sending test notification
-            /// </summary>
-            /// <remarks>
-            /// Method sending notification, that based on notification template. Template
-            /// for rendering chosen by type, objectId, objectTypeId, language.
-            /// Parameters for template may be prepared by the method of
-            /// getTestingParameters. Method returns string. If sending finished with
-            /// success status
-            /// this string is empty, otherwise string contains error message.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='request'>
-            /// Test notification request
-            /// </param>
-            public static SendNotificationResult SendNotification(this INotifications operations, TestNotificationRequest request)
-            {
-                return operations.SendNotificationAsync(request).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Sending test notification
+        /// </summary>
+        /// <remarks>
+        /// Method sending notification, that based on notification template. Template
+        /// for rendering chosen by type, objectId, objectTypeId, language.
+        /// Parameters for template may be prepared by the method of
+        /// getTestingParameters. Method returns string. If sending finished with
+        /// success status
+        /// this string is empty, otherwise string contains error message.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='request'>
+        /// Test notification request
+        /// </param>
+        public static SendNotificationResult SendNotification(this INotifications operations, TestNotificationRequest request)
+        {
+            return operations.SendNotificationAsync(request).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Sending test notification
-            /// </summary>
-            /// <remarks>
-            /// Method sending notification, that based on notification template. Template
-            /// for rendering chosen by type, objectId, objectTypeId, language.
-            /// Parameters for template may be prepared by the method of
-            /// getTestingParameters. Method returns string. If sending finished with
-            /// success status
-            /// this string is empty, otherwise string contains error message.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='request'>
-            /// Test notification request
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SendNotificationResult> SendNotificationAsync(this INotifications operations, TestNotificationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Sending test notification
+        /// </summary>
+        /// <remarks>
+        /// Method sending notification, that based on notification template. Template
+        /// for rendering chosen by type, objectId, objectTypeId, language.
+        /// Parameters for template may be prepared by the method of
+        /// getTestingParameters. Method returns string. If sending finished with
+        /// success status
+        /// this string is empty, otherwise string contains error message.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='request'>
+        /// Test notification request
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<SendNotificationResult> SendNotificationAsync(this INotifications operations, TestNotificationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.SendNotificationWithHttpMessagesAsync(request, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.SendNotificationWithHttpMessagesAsync(request, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get notification journal for object
-            /// </summary>
-            /// <remarks>
-            /// Method returns notification journal page with array of notification, that
-            /// was send, sending or will be send in future. Result contains total count,
-            /// that can be used
-            /// for paging.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='objectId'>
-            /// Object id
-            /// </param>
-            /// <param name='objectTypeId'>
-            /// Object type id
-            /// </param>
-            /// <param name='start'>
-            /// Page setting start
-            /// </param>
-            /// <param name='count'>
-            /// Page setting count
-            /// </param>
-            /// <param name='sort'>
-            /// Sort expression
-            /// </param>
-            public static SearchNotificationsResult GetObjectNotificationJournal(this INotifications operations, string objectId, string objectTypeId, int start, int count, string sort)
-            {
-                return operations.GetObjectNotificationJournalAsync(objectId, objectTypeId, start, count, sort).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get notification journal for object
+        /// </summary>
+        /// <remarks>
+        /// Method returns notification journal page with array of notification, that
+        /// was send, sending or will be send in future. Result contains total count,
+        /// that can be used
+        /// for paging.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='objectId'>
+        /// Object id
+        /// </param>
+        /// <param name='objectTypeId'>
+        /// Object type id
+        /// </param>
+        /// <param name='start'>
+        /// Page setting start
+        /// </param>
+        /// <param name='count'>
+        /// Page setting count
+        /// </param>
+        /// <param name='sort'>
+        /// Sort expression
+        /// </param>
+        public static SearchNotificationsResult GetObjectNotificationJournal(this INotifications operations, string objectId, string objectTypeId, int start, int count, string sort)
+        {
+            return operations.GetObjectNotificationJournalAsync(objectId, objectTypeId, start, count, sort).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get notification journal for object
-            /// </summary>
-            /// <remarks>
-            /// Method returns notification journal page with array of notification, that
-            /// was send, sending or will be send in future. Result contains total count,
-            /// that can be used
-            /// for paging.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='objectId'>
-            /// Object id
-            /// </param>
-            /// <param name='objectTypeId'>
-            /// Object type id
-            /// </param>
-            /// <param name='start'>
-            /// Page setting start
-            /// </param>
-            /// <param name='count'>
-            /// Page setting count
-            /// </param>
-            /// <param name='sort'>
-            /// Sort expression
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SearchNotificationsResult> GetObjectNotificationJournalAsync(this INotifications operations, string objectId, string objectTypeId, int start, int count, string sort, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get notification journal for object
+        /// </summary>
+        /// <remarks>
+        /// Method returns notification journal page with array of notification, that
+        /// was send, sending or will be send in future. Result contains total count,
+        /// that can be used
+        /// for paging.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='objectId'>
+        /// Object id
+        /// </param>
+        /// <param name='objectTypeId'>
+        /// Object type id
+        /// </param>
+        /// <param name='start'>
+        /// Page setting start
+        /// </param>
+        /// <param name='count'>
+        /// Page setting count
+        /// </param>
+        /// <param name='sort'>
+        /// Sort expression
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<SearchNotificationsResult> GetObjectNotificationJournalAsync(this INotifications operations, string objectId, string objectTypeId, int start, int count, string sort, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetObjectNotificationJournalWithHttpMessagesAsync(objectId, objectTypeId, start, count, sort, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetObjectNotificationJournalWithHttpMessagesAsync(objectId, objectTypeId, start, count, sort, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get all notification journal
-            /// </summary>
-            /// <remarks>
-            /// Method returns notification journal page with array of notification, that
-            /// was send, sending or will be send in future. Result contains total count,
-            /// that can be used
-            /// for paging.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='start'>
-            /// Page setting start
-            /// </param>
-            /// <param name='count'>
-            /// Page setting count
-            /// </param>
-            /// <param name='sort'>
-            /// Sort expression
-            /// </param>
-            public static SearchNotificationsResult GetNotificationJournal(this INotifications operations, int start, int count, string sort)
-            {
-                return operations.GetNotificationJournalAsync(start, count, sort).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get all notification journal
+        /// </summary>
+        /// <remarks>
+        /// Method returns notification journal page with array of notification, that
+        /// was send, sending or will be send in future. Result contains total count,
+        /// that can be used
+        /// for paging.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='start'>
+        /// Page setting start
+        /// </param>
+        /// <param name='count'>
+        /// Page setting count
+        /// </param>
+        /// <param name='sort'>
+        /// Sort expression
+        /// </param>
+        public static SearchNotificationsResult GetNotificationJournal(this INotifications operations, int start, int count, string sort)
+        {
+            return operations.GetNotificationJournalAsync(start, count, sort).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get all notification journal
-            /// </summary>
-            /// <remarks>
-            /// Method returns notification journal page with array of notification, that
-            /// was send, sending or will be send in future. Result contains total count,
-            /// that can be used
-            /// for paging.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='start'>
-            /// Page setting start
-            /// </param>
-            /// <param name='count'>
-            /// Page setting count
-            /// </param>
-            /// <param name='sort'>
-            /// Sort expression
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SearchNotificationsResult> GetNotificationJournalAsync(this INotifications operations, int start, int count, string sort, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get all notification journal
+        /// </summary>
+        /// <remarks>
+        /// Method returns notification journal page with array of notification, that
+        /// was send, sending or will be send in future. Result contains total count,
+        /// that can be used
+        /// for paging.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='start'>
+        /// Page setting start
+        /// </param>
+        /// <param name='count'>
+        /// Page setting count
+        /// </param>
+        /// <param name='sort'>
+        /// Sort expression
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<SearchNotificationsResult> GetNotificationJournalAsync(this INotifications operations, int start, int count, string sort, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetNotificationJournalWithHttpMessagesAsync(start, count, sort, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetNotificationJournalWithHttpMessagesAsync(start, count, sort, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get sending notification
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// Sending notification id
-            /// </param>
-            public static Notification GetNotification(this INotifications operations, string id)
-            {
-                return operations.GetNotificationAsync(id).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get sending notification
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// Sending notification id
+        /// </param>
+        public static Notification GetNotification(this INotifications operations, string id)
+        {
+            return operations.GetNotificationAsync(id).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get sending notification
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// Sending notification id
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<Notification> GetNotificationAsync(this INotifications operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get sending notification
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// Sending notification id
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<Notification> GetNotificationAsync(this INotifications operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetNotificationWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetNotificationWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Stop sending notification
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='ids'>
-            /// Stop sending notification ids
-            /// </param>
-            public static void StopSendingNotifications(this INotifications operations, IList<string> ids)
-            {
-                operations.StopSendingNotificationsAsync(ids).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Stop sending notification
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='ids'>
+        /// Stop sending notification ids
+        /// </param>
+        public static void StopSendingNotifications(this INotifications operations, IList<string> ids)
+        {
+            operations.StopSendingNotificationsAsync(ids).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Stop sending notification
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='ids'>
-            /// Stop sending notification ids
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task StopSendingNotificationsAsync(this INotifications operations, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.StopSendingNotificationsWithHttpMessagesAsync(ids, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Stop sending notification
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='ids'>
+        /// Stop sending notification ids
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task StopSendingNotificationsAsync(this INotifications operations, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.StopSendingNotificationsWithHttpMessagesAsync(ids, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
     }
 }
@@ -10162,7 +10250,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -10197,10 +10285,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -10298,7 +10388,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -10310,11 +10400,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(userProfile != null)
+            if (userProfile != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(userProfile, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -10339,10 +10429,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -10459,62 +10551,62 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
     /// </summary>
     public static partial class ProfilesExtensions
     {
-            /// <summary>
-            /// Get current user profile
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static UserProfile GetCurrentUserProfile(this IProfiles operations)
-            {
-                return operations.GetCurrentUserProfileAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get current user profile
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static UserProfile GetCurrentUserProfile(this IProfiles operations)
+        {
+            return operations.GetCurrentUserProfileAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get current user profile
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<UserProfile> GetCurrentUserProfileAsync(this IProfiles operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get current user profile
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<UserProfile> GetCurrentUserProfileAsync(this IProfiles operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetCurrentUserProfileWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetCurrentUserProfileWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Update current user profile
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='userProfile'>
-            /// </param>
-            public static void UpdateCurrentUserProfile(this IProfiles operations, UserProfile userProfile)
-            {
-                operations.UpdateCurrentUserProfileAsync(userProfile).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Update current user profile
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='userProfile'>
+        /// </param>
+        public static void UpdateCurrentUserProfile(this IProfiles operations, UserProfile userProfile)
+        {
+            operations.UpdateCurrentUserProfileAsync(userProfile).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Update current user profile
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='userProfile'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task UpdateCurrentUserProfileAsync(this IProfiles operations, UserProfile userProfile, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.UpdateCurrentUserProfileWithHttpMessagesAsync(userProfile, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Update current user profile
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='userProfile'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task UpdateCurrentUserProfileAsync(this IProfiles operations, UserProfile userProfile, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.UpdateCurrentUserProfileWithHttpMessagesAsync(userProfile, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
     }
 }
@@ -10625,7 +10717,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -10637,11 +10729,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(criteria != null)
+            if (criteria != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(criteria, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -10666,10 +10758,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -10757,7 +10851,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -10792,10 +10886,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -10934,67 +11030,67 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
     /// </summary>
     public static partial class PushNotificationOperationsExtensions
     {
-            /// <summary>
-            /// Search push notifications
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='criteria'>
-            /// Search parameters.
-            /// </param>
-            public static PushNotificationSearchResult Search(this IPushNotificationOperations operations, PushNotificationSearchCriteria criteria)
-            {
-                return operations.SearchAsync(criteria).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Search push notifications
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='criteria'>
+        /// Search parameters.
+        /// </param>
+        public static PushNotificationSearchResult Search(this IPushNotificationOperations operations, PushNotificationSearchCriteria criteria)
+        {
+            return operations.SearchAsync(criteria).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Search push notifications
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='criteria'>
-            /// Search parameters.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<PushNotificationSearchResult> SearchAsync(this IPushNotificationOperations operations, PushNotificationSearchCriteria criteria, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Search push notifications
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='criteria'>
+        /// Search parameters.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<PushNotificationSearchResult> SearchAsync(this IPushNotificationOperations operations, PushNotificationSearchCriteria criteria, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.SearchWithHttpMessagesAsync(criteria, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.SearchWithHttpMessagesAsync(criteria, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Mark all notifications as read
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static PushNotificationSearchResult MarkAllAsRead(this IPushNotificationOperations operations)
-            {
-                return operations.MarkAllAsReadAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Mark all notifications as read
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static PushNotificationSearchResult MarkAllAsRead(this IPushNotificationOperations operations)
+        {
+            return operations.MarkAllAsReadAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Mark all notifications as read
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<PushNotificationSearchResult> MarkAllAsReadAsync(this IPushNotificationOperations operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Mark all notifications as read
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<PushNotificationSearchResult> MarkAllAsReadAsync(this IPushNotificationOperations operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.MarkAllAsReadWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.MarkAllAsReadWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
     }
 }
@@ -11109,7 +11205,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -11121,11 +11217,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(model != null)
+            if (model != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(model, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -11150,10 +11246,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -11238,7 +11336,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -11273,10 +11371,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -11346,7 +11446,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -11381,10 +11481,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -11486,7 +11588,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -11521,10 +11623,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -11645,7 +11749,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -11680,10 +11784,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -11771,7 +11877,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -11806,10 +11912,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -11910,7 +12018,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -11922,11 +12030,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(role != null)
+            if (role != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(role, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -11951,10 +12059,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -12045,7 +12155,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/platform/security/roles").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/platform/security/roles/search").ToString();
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -12056,7 +12166,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -12068,11 +12178,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(request != null)
+            if (request != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(request, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -12097,10 +12207,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -12217,7 +12329,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -12252,10 +12364,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -12339,7 +12453,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -12374,10 +12488,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -12491,7 +12607,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -12526,10 +12642,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -12630,7 +12748,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -12642,11 +12760,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(account != null)
+            if (account != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(account, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -12671,10 +12789,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -12758,7 +12878,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -12770,11 +12890,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(user != null)
+            if (user != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(user, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -12799,10 +12919,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -12904,7 +13026,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -12916,11 +13038,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(request != null)
+            if (request != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(request, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -12945,10 +13067,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -13066,7 +13190,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -13101,10 +13225,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -13188,7 +13314,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -13223,10 +13349,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -13379,7 +13507,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -13414,10 +13542,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -13519,7 +13649,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -13554,10 +13684,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -13659,7 +13791,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -13671,11 +13803,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(user != null)
+            if (user != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(user, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -13700,10 +13832,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -13813,7 +13947,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -13825,11 +13959,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(changePassword != null)
+            if (changePassword != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(changePassword, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -13854,10 +13988,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -13967,7 +14103,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -13979,11 +14115,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(resetPassword != null)
+            if (resetPassword != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(resetPassword, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -14008,10 +14144,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -14120,7 +14258,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -14132,11 +14270,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(resetPassword != null)
+            if (resetPassword != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(resetPassword, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -14161,10 +14299,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -14269,7 +14409,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -14304,10 +14444,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -14410,7 +14552,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -14445,10 +14587,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -14551,7 +14695,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -14586,10 +14730,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -15229,861 +15375,861 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
     /// </summary>
     public static partial class SecurityExtensions
     {
-            /// <summary>
-            /// Sign in with user name and password
-            /// </summary>
-            /// <remarks>
-            /// Verifies provided credentials and if succeeded returns full user details,
-            /// otherwise returns 401 Unauthorized.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='model'>
-            /// User credentials.
-            /// </param>
-            public static ApplicationUserExtended Login(this ISecurity operations, UserLogin model)
-            {
-                return operations.LoginAsync(model).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Sign in with user name and password
+        /// </summary>
+        /// <remarks>
+        /// Verifies provided credentials and if succeeded returns full user details,
+        /// otherwise returns 401 Unauthorized.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='model'>
+        /// User credentials.
+        /// </param>
+        public static ApplicationUserExtended Login(this ISecurity operations, UserLogin model)
+        {
+            return operations.LoginAsync(model).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Sign in with user name and password
-            /// </summary>
-            /// <remarks>
-            /// Verifies provided credentials and if succeeded returns full user details,
-            /// otherwise returns 401 Unauthorized.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='model'>
-            /// User credentials.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<ApplicationUserExtended> LoginAsync(this ISecurity operations, UserLogin model, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Sign in with user name and password
+        /// </summary>
+        /// <remarks>
+        /// Verifies provided credentials and if succeeded returns full user details,
+        /// otherwise returns 401 Unauthorized.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='model'>
+        /// User credentials.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<ApplicationUserExtended> LoginAsync(this ISecurity operations, UserLogin model, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.LoginWithHttpMessagesAsync(model, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.LoginWithHttpMessagesAsync(model, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Sign out
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static void Logout(this ISecurity operations)
-            {
-                operations.LogoutAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Sign out
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static void Logout(this ISecurity operations)
+        {
+            operations.LogoutAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Sign out
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task LogoutAsync(this ISecurity operations, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.LogoutWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Sign out
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task LogoutAsync(this ISecurity operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.LogoutWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Get current user details
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static ApplicationUserExtended GetCurrentUser(this ISecurity operations)
-            {
-                return operations.GetCurrentUserAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get current user details
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static ApplicationUserExtended GetCurrentUser(this ISecurity operations)
+        {
+            return operations.GetCurrentUserAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get current user details
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<ApplicationUserExtended> GetCurrentUserAsync(this ISecurity operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get current user details
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<ApplicationUserExtended> GetCurrentUserAsync(this ISecurity operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetCurrentUserWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetCurrentUserWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get user details by user email
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='email'>
-            /// </param>
-            public static ApplicationUserExtended GetUserByEmail(this ISecurity operations, string email)
-            {
-                return operations.GetUserByEmailAsync(email).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get user details by user email
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='email'>
+        /// </param>
+        public static ApplicationUserExtended GetUserByEmail(this ISecurity operations, string email)
+        {
+            return operations.GetUserByEmailAsync(email).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get user details by user email
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='email'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<ApplicationUserExtended> GetUserByEmailAsync(this ISecurity operations, string email, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get user details by user email
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='email'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<ApplicationUserExtended> GetUserByEmailAsync(this ISecurity operations, string email, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetUserByEmailWithHttpMessagesAsync(email, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetUserByEmailWithHttpMessagesAsync(email, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get user details by external login provider
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='loginProvider'>
-            /// </param>
-            /// <param name='providerKey'>
-            /// </param>
-            public static ApplicationUserExtended GetUserByLogin(this ISecurity operations, string loginProvider, string providerKey)
-            {
-                return operations.GetUserByLoginAsync(loginProvider, providerKey).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get user details by external login provider
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='loginProvider'>
+        /// </param>
+        /// <param name='providerKey'>
+        /// </param>
+        public static ApplicationUserExtended GetUserByLogin(this ISecurity operations, string loginProvider, string providerKey)
+        {
+            return operations.GetUserByLoginAsync(loginProvider, providerKey).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get user details by external login provider
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='loginProvider'>
-            /// </param>
-            /// <param name='providerKey'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<ApplicationUserExtended> GetUserByLoginAsync(this ISecurity operations, string loginProvider, string providerKey, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get user details by external login provider
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='loginProvider'>
+        /// </param>
+        /// <param name='providerKey'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<ApplicationUserExtended> GetUserByLoginAsync(this ISecurity operations, string loginProvider, string providerKey, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetUserByLoginWithHttpMessagesAsync(loginProvider, providerKey, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetUserByLoginWithHttpMessagesAsync(loginProvider, providerKey, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get all registered permissions
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static IList<Permission> GetPermissions(this ISecurity operations)
-            {
-                return operations.GetPermissionsAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get all registered permissions
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static IList<Permission> GetPermissions(this ISecurity operations)
+        {
+            return operations.GetPermissionsAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get all registered permissions
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<Permission>> GetPermissionsAsync(this ISecurity operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get all registered permissions
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<Permission>> GetPermissionsAsync(this ISecurity operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetPermissionsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetPermissionsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Add a new role or update an existing role
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='role'>
-            /// </param>
-            public static Role UpdateRole(this ISecurity operations, Role role)
-            {
-                return operations.UpdateRoleAsync(role).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Add a new role or update an existing role
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='role'>
+        /// </param>
+        public static Role UpdateRole(this ISecurity operations, Role role)
+        {
+            return operations.UpdateRoleAsync(role).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Add a new role or update an existing role
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='role'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<Role> UpdateRoleAsync(this ISecurity operations, Role role, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Add a new role or update an existing role
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='role'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<Role> UpdateRoleAsync(this ISecurity operations, Role role, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.UpdateRoleWithHttpMessagesAsync(role, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.UpdateRoleWithHttpMessagesAsync(role, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Search roles by keyword
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='request'>
-            /// Search parameters.
-            /// </param>
-            public static RoleSearchResponse SearchRoles(this ISecurity operations, RoleSearchRequest request)
-            {
-                return operations.SearchRolesAsync(request).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Search roles by keyword
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='request'>
+        /// Search parameters.
+        /// </param>
+        public static RoleSearchResponse SearchRoles(this ISecurity operations, RoleSearchRequest request)
+        {
+            return operations.SearchRolesAsync(request).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Search roles by keyword
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='request'>
-            /// Search parameters.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<RoleSearchResponse> SearchRolesAsync(this ISecurity operations, RoleSearchRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Search roles by keyword
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='request'>
+        /// Search parameters.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<RoleSearchResponse> SearchRolesAsync(this ISecurity operations, RoleSearchRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.SearchRolesWithHttpMessagesAsync(request, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.SearchRolesWithHttpMessagesAsync(request, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Delete roles by ID
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='ids'>
-            /// </param>
-            public static void DeleteRoles(this ISecurity operations, IList<string> ids)
-            {
-                operations.DeleteRolesAsync(ids).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Delete roles by ID
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='ids'>
+        /// </param>
+        public static void DeleteRoles(this ISecurity operations, IList<string> ids)
+        {
+            operations.DeleteRolesAsync(ids).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Delete roles by ID
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='ids'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task DeleteRolesAsync(this ISecurity operations, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.DeleteRolesWithHttpMessagesAsync(ids, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Delete roles by ID
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='ids'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task DeleteRolesAsync(this ISecurity operations, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.DeleteRolesWithHttpMessagesAsync(ids, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Get role by ID
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='roleId'>
-            /// </param>
-            public static Role GetRole(this ISecurity operations, string roleId)
-            {
-                return operations.GetRoleAsync(roleId).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get role by ID
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='roleId'>
+        /// </param>
+        public static Role GetRole(this ISecurity operations, string roleId)
+        {
+            return operations.GetRoleAsync(roleId).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get role by ID
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='roleId'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<Role> GetRoleAsync(this ISecurity operations, string roleId, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get role by ID
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='roleId'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<Role> GetRoleAsync(this ISecurity operations, string roleId, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetRoleWithHttpMessagesAsync(roleId, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetRoleWithHttpMessagesAsync(roleId, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Generate new API account
-            /// </summary>
-            /// <remarks>
-            /// Generates new account but does not save it.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='type'>
-            /// Possible values include: 'Undefined', 'Hmac', 'Simple'
-            /// </param>
-            public static ApiAccount GenerateNewApiAccount(this ISecurity operations, string type)
-            {
-                return operations.GenerateNewApiAccountAsync(type).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Generate new API account
+        /// </summary>
+        /// <remarks>
+        /// Generates new account but does not save it.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='type'>
+        /// Possible values include: 'Undefined', 'Hmac', 'Simple'
+        /// </param>
+        public static ApiAccount GenerateNewApiAccount(this ISecurity operations, string type)
+        {
+            return operations.GenerateNewApiAccountAsync(type).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Generate new API account
-            /// </summary>
-            /// <remarks>
-            /// Generates new account but does not save it.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='type'>
-            /// Possible values include: 'Undefined', 'Hmac', 'Simple'
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<ApiAccount> GenerateNewApiAccountAsync(this ISecurity operations, string type, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Generate new API account
+        /// </summary>
+        /// <remarks>
+        /// Generates new account but does not save it.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='type'>
+        /// Possible values include: 'Undefined', 'Hmac', 'Simple'
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<ApiAccount> GenerateNewApiAccountAsync(this ISecurity operations, string type, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GenerateNewApiAccountWithHttpMessagesAsync(type, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GenerateNewApiAccountWithHttpMessagesAsync(type, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Generate new API key for specified account
-            /// </summary>
-            /// <remarks>
-            /// Generates new key for specified account but does not save it.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='account'>
-            /// </param>
-            public static void GenerateNewApiKey(this ISecurity operations, ApiAccount account)
-            {
-                operations.GenerateNewApiKeyAsync(account).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Generate new API key for specified account
+        /// </summary>
+        /// <remarks>
+        /// Generates new key for specified account but does not save it.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='account'>
+        /// </param>
+        public static void GenerateNewApiKey(this ISecurity operations, ApiAccount account)
+        {
+            operations.GenerateNewApiKeyAsync(account).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Generate new API key for specified account
-            /// </summary>
-            /// <remarks>
-            /// Generates new key for specified account but does not save it.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='account'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task GenerateNewApiKeyAsync(this ISecurity operations, ApiAccount account, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.GenerateNewApiKeyWithHttpMessagesAsync(account, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Generate new API key for specified account
+        /// </summary>
+        /// <remarks>
+        /// Generates new key for specified account but does not save it.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='account'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task GenerateNewApiKeyAsync(this ISecurity operations, ApiAccount account, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.GenerateNewApiKeyWithHttpMessagesAsync(account, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Update user details by user ID
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='user'>
-            /// User details.
-            /// </param>
-            public static SecurityResult UpdateAsync(this ISecurity operations, ApplicationUserExtended user)
-            {
-                return operations.UpdateAsyncAsync(user).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Update user details by user ID
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='user'>
+        /// User details.
+        /// </param>
+        public static SecurityResult UpdateAsync(this ISecurity operations, ApplicationUserExtended user)
+        {
+            return operations.UpdateAsyncAsync(user).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Update user details by user ID
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='user'>
-            /// User details.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SecurityResult> UpdateAsyncAsync(this ISecurity operations, ApplicationUserExtended user, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Update user details by user ID
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='user'>
+        /// User details.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<SecurityResult> UpdateAsyncAsync(this ISecurity operations, ApplicationUserExtended user, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.UpdateAsyncWithHttpMessagesAsync(user, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.UpdateAsyncWithHttpMessagesAsync(user, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Search users by keyword
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='request'>
-            /// Search parameters.
-            /// </param>
-            public static UserSearchResponse SearchUsersAsync(this ISecurity operations, UserSearchRequest request)
-            {
-                return operations.SearchUsersAsyncAsync(request).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Search users by keyword
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='request'>
+        /// Search parameters.
+        /// </param>
+        public static UserSearchResponse SearchUsersAsync(this ISecurity operations, UserSearchRequest request)
+        {
+            return operations.SearchUsersAsyncAsync(request).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Search users by keyword
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='request'>
-            /// Search parameters.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<UserSearchResponse> SearchUsersAsyncAsync(this ISecurity operations, UserSearchRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Search users by keyword
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='request'>
+        /// Search parameters.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<UserSearchResponse> SearchUsersAsyncAsync(this ISecurity operations, UserSearchRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.SearchUsersAsyncWithHttpMessagesAsync(request, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.SearchUsersAsyncWithHttpMessagesAsync(request, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Delete users by name
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='names'>
-            /// An array of user names.
-            /// </param>
-            public static void DeleteAsync(this ISecurity operations, IList<string> names)
-            {
-                operations.DeleteAsyncAsync(names).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Delete users by name
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='names'>
+        /// An array of user names.
+        /// </param>
+        public static void DeleteAsync(this ISecurity operations, IList<string> names)
+        {
+            operations.DeleteAsyncAsync(names).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Delete users by name
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='names'>
-            /// An array of user names.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task DeleteAsyncAsync(this ISecurity operations, IList<string> names, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.DeleteAsyncWithHttpMessagesAsync(names, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Delete users by name
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='names'>
+        /// An array of user names.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task DeleteAsyncAsync(this ISecurity operations, IList<string> names, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.DeleteAsyncWithHttpMessagesAsync(names, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Get user details by user name
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='userName'>
-            /// </param>
-            public static ApplicationUserExtended GetUserByName(this ISecurity operations, string userName)
-            {
-                return operations.GetUserByNameAsync(userName).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get user details by user name
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='userName'>
+        /// </param>
+        public static ApplicationUserExtended GetUserByName(this ISecurity operations, string userName)
+        {
+            return operations.GetUserByNameAsync(userName).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get user details by user name
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='userName'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<ApplicationUserExtended> GetUserByNameAsync(this ISecurity operations, string userName, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get user details by user name
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='userName'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<ApplicationUserExtended> GetUserByNameAsync(this ISecurity operations, string userName, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetUserByNameWithHttpMessagesAsync(userName, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetUserByNameWithHttpMessagesAsync(userName, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Check specified user has passed permissions in specified scope
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='userName'>
-            /// security account name
-            /// </param>
-            /// <param name='permissions'>
-            /// checked permissions Example: ?permissions=read&amp;amp;permissions=write
-            /// </param>
-            /// <param name='scopes'>
-            /// security bounded scopes. Read mode:
-            /// http://docs.virtocommerce.com/display/vc2devguide/Working+with+platform+security
-            /// </param>
-            public static CheckPermissionsResult UserHasAnyPermission(this ISecurity operations, string userName, IList<string> permissions, IList<string> scopes)
-            {
-                return operations.UserHasAnyPermissionAsync(userName, permissions, scopes).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Check specified user has passed permissions in specified scope
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='userName'>
+        /// security account name
+        /// </param>
+        /// <param name='permissions'>
+        /// checked permissions Example: ?permissions=read&amp;amp;permissions=write
+        /// </param>
+        /// <param name='scopes'>
+        /// security bounded scopes. Read mode:
+        /// http://docs.virtocommerce.com/display/vc2devguide/Working+with+platform+security
+        /// </param>
+        public static CheckPermissionsResult UserHasAnyPermission(this ISecurity operations, string userName, IList<string> permissions, IList<string> scopes)
+        {
+            return operations.UserHasAnyPermissionAsync(userName, permissions, scopes).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Check specified user has passed permissions in specified scope
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='userName'>
-            /// security account name
-            /// </param>
-            /// <param name='permissions'>
-            /// checked permissions Example: ?permissions=read&amp;amp;permissions=write
-            /// </param>
-            /// <param name='scopes'>
-            /// security bounded scopes. Read mode:
-            /// http://docs.virtocommerce.com/display/vc2devguide/Working+with+platform+security
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<CheckPermissionsResult> UserHasAnyPermissionAsync(this ISecurity operations, string userName, IList<string> permissions, IList<string> scopes, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Check specified user has passed permissions in specified scope
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='userName'>
+        /// security account name
+        /// </param>
+        /// <param name='permissions'>
+        /// checked permissions Example: ?permissions=read&amp;amp;permissions=write
+        /// </param>
+        /// <param name='scopes'>
+        /// security bounded scopes. Read mode:
+        /// http://docs.virtocommerce.com/display/vc2devguide/Working+with+platform+security
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<CheckPermissionsResult> UserHasAnyPermissionAsync(this ISecurity operations, string userName, IList<string> permissions, IList<string> scopes, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.UserHasAnyPermissionWithHttpMessagesAsync(userName, permissions, scopes, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.UserHasAnyPermissionWithHttpMessagesAsync(userName, permissions, scopes, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get user details by user ID
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// </param>
-            public static ApplicationUserExtended GetUserById(this ISecurity operations, string id)
-            {
-                return operations.GetUserByIdAsync(id).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get user details by user ID
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// </param>
+        public static ApplicationUserExtended GetUserById(this ISecurity operations, string id)
+        {
+            return operations.GetUserByIdAsync(id).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get user details by user ID
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<ApplicationUserExtended> GetUserByIdAsync(this ISecurity operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get user details by user ID
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<ApplicationUserExtended> GetUserByIdAsync(this ISecurity operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetUserByIdWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetUserByIdWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Create new user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='user'>
-            /// User details.
-            /// </param>
-            public static SecurityResult CreateAsync(this ISecurity operations, ApplicationUserExtended user)
-            {
-                return operations.CreateAsyncAsync(user).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Create new user
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='user'>
+        /// User details.
+        /// </param>
+        public static SecurityResult CreateAsync(this ISecurity operations, ApplicationUserExtended user)
+        {
+            return operations.CreateAsyncAsync(user).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Create new user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='user'>
-            /// User details.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SecurityResult> CreateAsyncAsync(this ISecurity operations, ApplicationUserExtended user, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Create new user
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='user'>
+        /// User details.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<SecurityResult> CreateAsyncAsync(this ISecurity operations, ApplicationUserExtended user, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.CreateAsyncWithHttpMessagesAsync(user, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.CreateAsyncWithHttpMessagesAsync(user, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Change password
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='userName'>
-            /// </param>
-            /// <param name='changePassword'>
-            /// Old and new passwords.
-            /// </param>
-            public static SecurityResult ChangePassword(this ISecurity operations, string userName, ChangePasswordInfo changePassword)
-            {
-                return operations.ChangePasswordAsync(userName, changePassword).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Change password
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='userName'>
+        /// </param>
+        /// <param name='changePassword'>
+        /// Old and new passwords.
+        /// </param>
+        public static SecurityResult ChangePassword(this ISecurity operations, string userName, ChangePasswordInfo changePassword)
+        {
+            return operations.ChangePasswordAsync(userName, changePassword).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Change password
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='userName'>
-            /// </param>
-            /// <param name='changePassword'>
-            /// Old and new passwords.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SecurityResult> ChangePasswordAsync(this ISecurity operations, string userName, ChangePasswordInfo changePassword, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Change password
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='userName'>
+        /// </param>
+        /// <param name='changePassword'>
+        /// Old and new passwords.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<SecurityResult> ChangePasswordAsync(this ISecurity operations, string userName, ChangePasswordInfo changePassword, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.ChangePasswordWithHttpMessagesAsync(userName, changePassword, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.ChangePasswordWithHttpMessagesAsync(userName, changePassword, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Reset password
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='userName'>
-            /// </param>
-            /// <param name='resetPassword'>
-            /// New password.
-            /// </param>
-            public static SecurityResult ResetPassword(this ISecurity operations, string userName, ResetPasswordInfo resetPassword)
-            {
-                return operations.ResetPasswordAsync(userName, resetPassword).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Reset password
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='userName'>
+        /// </param>
+        /// <param name='resetPassword'>
+        /// New password.
+        /// </param>
+        public static SecurityResult ResetPassword(this ISecurity operations, string userName, ResetPasswordInfo resetPassword)
+        {
+            return operations.ResetPasswordAsync(userName, resetPassword).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Reset password
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='userName'>
-            /// </param>
-            /// <param name='resetPassword'>
-            /// New password.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SecurityResult> ResetPasswordAsync(this ISecurity operations, string userName, ResetPasswordInfo resetPassword, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Reset password
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='userName'>
+        /// </param>
+        /// <param name='resetPassword'>
+        /// New password.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<SecurityResult> ResetPasswordAsync(this ISecurity operations, string userName, ResetPasswordInfo resetPassword, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.ResetPasswordWithHttpMessagesAsync(userName, resetPassword, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.ResetPasswordWithHttpMessagesAsync(userName, resetPassword, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Reset password by token
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='userId'>
-            /// </param>
-            /// <param name='resetPassword'>
-            /// </param>
-            public static SecurityResult ResetPasswordByToken(this ISecurity operations, string userId, ResetPasswordInfo resetPassword)
-            {
-                return operations.ResetPasswordByTokenAsync(userId, resetPassword).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Reset password by token
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='userId'>
+        /// </param>
+        /// <param name='resetPassword'>
+        /// </param>
+        public static SecurityResult ResetPasswordByToken(this ISecurity operations, string userId, ResetPasswordInfo resetPassword)
+        {
+            return operations.ResetPasswordByTokenAsync(userId, resetPassword).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Reset password by token
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='userId'>
-            /// </param>
-            /// <param name='resetPassword'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SecurityResult> ResetPasswordByTokenAsync(this ISecurity operations, string userId, ResetPasswordInfo resetPassword, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Reset password by token
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='userId'>
+        /// </param>
+        /// <param name='resetPassword'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<SecurityResult> ResetPasswordByTokenAsync(this ISecurity operations, string userId, ResetPasswordInfo resetPassword, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.ResetPasswordByTokenWithHttpMessagesAsync(userId, resetPassword, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.ResetPasswordByTokenWithHttpMessagesAsync(userId, resetPassword, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Send email with instructions on how to reset user password.
-            /// </summary>
-            /// <remarks>
-            /// Verifies provided userName and (if succeeded) sends email.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='loginOrEmail'>
-            /// </param>
-            public static SecurityResult RequestPasswordReset(this ISecurity operations, string loginOrEmail)
-            {
-                return operations.RequestPasswordResetAsync(loginOrEmail).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Send email with instructions on how to reset user password.
+        /// </summary>
+        /// <remarks>
+        /// Verifies provided userName and (if succeeded) sends email.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='loginOrEmail'>
+        /// </param>
+        public static SecurityResult RequestPasswordReset(this ISecurity operations, string loginOrEmail)
+        {
+            return operations.RequestPasswordResetAsync(loginOrEmail).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Send email with instructions on how to reset user password.
-            /// </summary>
-            /// <remarks>
-            /// Verifies provided userName and (if succeeded) sends email.
-            /// </remarks>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='loginOrEmail'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SecurityResult> RequestPasswordResetAsync(this ISecurity operations, string loginOrEmail, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Send email with instructions on how to reset user password.
+        /// </summary>
+        /// <remarks>
+        /// Verifies provided userName and (if succeeded) sends email.
+        /// </remarks>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='loginOrEmail'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<SecurityResult> RequestPasswordResetAsync(this ISecurity operations, string loginOrEmail, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.RequestPasswordResetWithHttpMessagesAsync(loginOrEmail, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.RequestPasswordResetWithHttpMessagesAsync(loginOrEmail, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Checks if user locked
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// User id
-            /// </param>
-            public static UserLockedResult IsUserLockedAsync(this ISecurity operations, string id)
-            {
-                return operations.IsUserLockedAsyncAsync(id).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Checks if user locked
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// User id
+        /// </param>
+        public static UserLockedResult IsUserLockedAsync(this ISecurity operations, string id)
+        {
+            return operations.IsUserLockedAsyncAsync(id).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Checks if user locked
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// User id
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<UserLockedResult> IsUserLockedAsyncAsync(this ISecurity operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Checks if user locked
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// User id
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<UserLockedResult> IsUserLockedAsyncAsync(this ISecurity operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.IsUserLockedAsyncWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.IsUserLockedAsyncWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Unlock user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// &amp;gt;User id
-            /// </param>
-            public static SecurityResult UnlockUserAsync(this ISecurity operations, string id)
-            {
-                return operations.UnlockUserAsyncAsync(id).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Unlock user
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// &amp;gt;User id
+        /// </param>
+        public static SecurityResult UnlockUserAsync(this ISecurity operations, string id)
+        {
+            return operations.UnlockUserAsyncAsync(id).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Unlock user
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// &amp;gt;User id
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<SecurityResult> UnlockUserAsyncAsync(this ISecurity operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Unlock user
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// &amp;gt;User id
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<SecurityResult> UnlockUserAsyncAsync(this ISecurity operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.UnlockUserAsyncWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.UnlockUserAsyncWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
     }
 }
@@ -16180,7 +16326,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -16215,10 +16361,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -16316,7 +16464,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -16328,11 +16476,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if(settings != null)
+            if (settings != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(settings, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -16357,10 +16505,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -16445,7 +16595,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -16480,10 +16630,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -16586,7 +16738,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -16621,10 +16773,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -16712,7 +16866,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
 
             if (customHeaders != null)
             {
-                foreach(var _header in customHeaders)
+                foreach (var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -16747,10 +16901,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null) {
+                if (_httpResponse.Content != null)
+                {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else {
+                else
+                {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -16945,158 +17101,158 @@ namespace VirtoCommerce.Storefront.AutoRestClients.PlatformModuleApi
     /// </summary>
     public static partial class SettingOperationsExtensions
     {
-            /// <summary>
-            /// Get all settings
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static IList<Setting> GetAllSettings(this ISettingOperations operations)
-            {
-                return operations.GetAllSettingsAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get all settings
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static IList<Setting> GetAllSettings(this ISettingOperations operations)
+        {
+            return operations.GetAllSettingsAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get all settings
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<Setting>> GetAllSettingsAsync(this ISettingOperations operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get all settings
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<Setting>> GetAllSettingsAsync(this ISettingOperations operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetAllSettingsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetAllSettingsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Update settings values
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='settings'>
-            /// </param>
-            public static void Update(this ISettingOperations operations, IList<Setting> settings)
-            {
-                operations.UpdateAsync(settings).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Update settings values
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='settings'>
+        /// </param>
+        public static void Update(this ISettingOperations operations, IList<Setting> settings)
+        {
+            operations.UpdateAsync(settings).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Update settings values
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='settings'>
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task UpdateAsync(this ISettingOperations operations, IList<Setting> settings, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                (await operations.UpdateWithHttpMessagesAsync(settings, null, cancellationToken).ConfigureAwait(false)).Dispose();
-            }
+        /// <summary>
+        /// Update settings values
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='settings'>
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task UpdateAsync(this ISettingOperations operations, IList<Setting> settings, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            (await operations.UpdateWithHttpMessagesAsync(settings, null, cancellationToken).ConfigureAwait(false)).Dispose();
+        }
 
-            /// <summary>
-            /// Get settings registered by specific module
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// Module ID.
-            /// </param>
-            public static IList<Setting> GetModuleSettings(this ISettingOperations operations, string id)
-            {
-                return operations.GetModuleSettingsAsync(id).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get settings registered by specific module
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// Module ID.
+        /// </param>
+        public static IList<Setting> GetModuleSettings(this ISettingOperations operations, string id)
+        {
+            return operations.GetModuleSettingsAsync(id).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get settings registered by specific module
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='id'>
-            /// Module ID.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IList<Setting>> GetModuleSettingsAsync(this ISettingOperations operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get settings registered by specific module
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='id'>
+        /// Module ID.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<IList<Setting>> GetModuleSettingsAsync(this ISettingOperations operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetModuleSettingsWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetModuleSettingsWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get setting details by name
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='name'>
-            /// Setting system name.
-            /// </param>
-            public static Setting GetSetting(this ISettingOperations operations, string name)
-            {
-                return operations.GetSettingAsync(name).GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get setting details by name
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='name'>
+        /// Setting system name.
+        /// </param>
+        public static Setting GetSetting(this ISettingOperations operations, string name)
+        {
+            return operations.GetSettingAsync(name).GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get setting details by name
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='name'>
-            /// Setting system name.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<Setting> GetSettingAsync(this ISettingOperations operations, string name, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get setting details by name
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='name'>
+        /// Setting system name.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<Setting> GetSettingAsync(this ISettingOperations operations, string name, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetSettingWithHttpMessagesAsync(name, null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetSettingWithHttpMessagesAsync(name, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
-            /// <summary>
-            /// Get UI customization setting
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            public static Setting GetUICustomizationSetting(this ISettingOperations operations)
-            {
-                return operations.GetUICustomizationSettingAsync().GetAwaiter().GetResult();
-            }
+        /// <summary>
+        /// Get UI customization setting
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        public static Setting GetUICustomizationSetting(this ISettingOperations operations)
+        {
+            return operations.GetUICustomizationSettingAsync().GetAwaiter().GetResult();
+        }
 
-            /// <summary>
-            /// Get UI customization setting
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<Setting> GetUICustomizationSettingAsync(this ISettingOperations operations, CancellationToken cancellationToken = default(CancellationToken))
+        /// <summary>
+        /// Get UI customization setting
+        /// </summary>
+        /// <param name='operations'>
+        /// The operations group for this extension method.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        public static async Task<Setting> GetUICustomizationSettingAsync(this ISettingOperations operations, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            using (var _result = await operations.GetUICustomizationSettingWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
             {
-                using (var _result = await operations.GetUICustomizationSettingWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                return _result.Body;
             }
+        }
 
     }
 }
