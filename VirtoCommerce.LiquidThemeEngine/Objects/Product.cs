@@ -1,6 +1,6 @@
-using DotLiquid;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using DotLiquid;
 using VirtoCommerce.Storefront.Model.Common;
 
 namespace VirtoCommerce.LiquidThemeEngine.Objects
@@ -314,6 +314,12 @@ namespace VirtoCommerce.LiquidThemeEngine.Objects
         /// Association quantity
         /// </summary>
         public int? AssociationQuantity { get; set; }
+
+
+        /// <summary>
+        /// Customer Reviews fot this product
+        /// </summary>
+        public CustomerReview[] CustomerReviews { get; set; }
 
     }
 }

@@ -1,13 +1,10 @@
-using Microsoft.Extensions.Caching.Memory;
-using PagedList.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
+using PagedList.Core;
 using VirtoCommerce.Storefront.AutoRestClients.CatalogModuleApi;
-using VirtoCommerce.Storefront.Caching;
-using VirtoCommerce.Storefront.Extensions;
 using VirtoCommerce.Storefront.Infrastructure;
 using VirtoCommerce.Storefront.Model;
 using VirtoCommerce.Storefront.Model.Caching;
@@ -15,6 +12,7 @@ using VirtoCommerce.Storefront.Model.Catalog;
 using VirtoCommerce.Storefront.Model.Common;
 using VirtoCommerce.Storefront.Model.Common.Caching;
 using VirtoCommerce.Storefront.Model.Customer.Services;
+using VirtoCommerce.Storefront.Model.CustomerReviews;
 using VirtoCommerce.Storefront.Model.Inventory.Services;
 using VirtoCommerce.Storefront.Model.Pricing.Services;
 using VirtoCommerce.Storefront.Model.Services;
@@ -32,6 +30,7 @@ namespace VirtoCommerce.Storefront.Domain
         private readonly IMemberService _customerService;
         private readonly ISubscriptionService _subscriptionService;
         private readonly IInventoryService _inventoryService;
+        private readonly ICustomerReviewService _customerReviewService;
         private readonly IStorefrontMemoryCache _memoryCache;
         private readonly IApiChangesWatcher _apiChangesWatcher;
 
@@ -39,6 +38,7 @@ namespace VirtoCommerce.Storefront.Domain
             ICatalogModuleProducts productsApi,
             ICatalogModuleSearch searchApi, IPricingService pricingService, IMemberService customerService,
             ISubscriptionService subscriptionService,
+            ICustomerReviewService customerReviewService,
             IInventoryService inventoryService, IStorefrontMemoryCache memoryCache, IApiChangesWatcher changesWatcher)
         {
             _workContextAccessor = workContextAccessor;
@@ -50,6 +50,7 @@ namespace VirtoCommerce.Storefront.Domain
             _inventoryService = inventoryService;
             _customerService = customerService;
             _subscriptionService = subscriptionService;
+            _customerReviewService = customerReviewService;
             _memoryCache = memoryCache;
             _apiChangesWatcher = changesWatcher;
         }
@@ -107,6 +108,9 @@ namespace VirtoCommerce.Storefront.Domain
                         taskList.Add(LoadProductPaymentPlanAsync(allProducts, workContext));
                     }
 
+
+                    taskList.Add(LoadProductCustomerReviewsAsync(allProducts, workContext));
+
                     await Task.WhenAll(taskList.ToArray());
 
                     foreach (var product in allProducts)
@@ -120,6 +124,8 @@ namespace VirtoCommerce.Storefront.Domain
 
             return result;
         }
+
+
 
         public virtual Category[] GetCategories(string[] ids, CategoryResponseGroup responseGroup = CategoryResponseGroup.Info)
         {
@@ -366,6 +372,32 @@ namespace VirtoCommerce.Storefront.Domain
             return Task.CompletedTask;
         }
 
+        protected virtual Task LoadProductCustomerReviewsAsync(List<Product> products, WorkContext workContext)
+        {
+            if (products == null)
+            {
+                throw new ArgumentNullException(nameof(products));
+            }
+
+            foreach (var product in products)
+            {
+                product.CustomerReviews = new MutablePagedList<Model.CustomerReviews.CustomerReview>((pageNumber, pageSize, sortInfos) =>
+                {
+                    var criteria = new CustomerReviewSearchCriteria
+                    {
+                        ProductIds = new[] { product.Id },
+                        PageNumber = pageNumber,
+                        PageSize = pageSize,
+                        Sort = SortInfo.ToString(sortInfos)
+                    };
+
+                    return _customerReviewService.SearchReviews(criteria);
+                }, 1, CustomerReviewSearchCriteria.DefaultPageSize);
+            }
+
+            return Task.CompletedTask;
+        }
+
         protected virtual void EstablishLazyDependenciesForCategories(IEnumerable<Category> categories)
         {
             if (categories == null)
@@ -404,6 +436,9 @@ namespace VirtoCommerce.Storefront.Domain
                 }, 1, CategorySearchCriteria.DefaultPageSize);
             }
         }
+
+
+
 
     }
 }
