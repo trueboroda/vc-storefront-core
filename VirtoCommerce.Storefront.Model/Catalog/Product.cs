@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using VirtoCommerce.Storefront.Model.Common;
+using VirtoCommerce.Storefront.Model.CustomerReviews;
 using VirtoCommerce.Storefront.Model.Marketing;
 using VirtoCommerce.Storefront.Model.Subscriptions;
 
@@ -207,6 +208,11 @@ namespace VirtoCommerce.Storefront.Model.Catalog
         /// Related or associated products
         /// </summary>
         public IMutablePagedList<ProductAssociation> Associations { get; set; }
+
+        /// <summary>
+        /// list of customer reviews releted with this
+        /// </summary>
+        public IMutablePagedList<CustomerReview> CustomerReviews { get; set; }
 
         /// <summary>
         /// Product description in current language
