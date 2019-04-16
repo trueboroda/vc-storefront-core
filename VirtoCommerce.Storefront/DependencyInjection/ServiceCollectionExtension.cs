@@ -16,7 +16,7 @@ using VirtoCommerce.Storefront.AutoRestClients.CatalogModuleApi;
 using VirtoCommerce.Storefront.AutoRestClients.ContentModuleApi;
 using VirtoCommerce.Storefront.AutoRestClients.CoreModuleApi;
 using VirtoCommerce.Storefront.AutoRestClients.CustomerModuleApi;
-using VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi;
+using VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi;
 using VirtoCommerce.Storefront.AutoRestClients.InventoryModuleApi;
 using VirtoCommerce.Storefront.AutoRestClients.MarketingModuleApi;
 using VirtoCommerce.Storefront.AutoRestClients.OrdersModuleApi;

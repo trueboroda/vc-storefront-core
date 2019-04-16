@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi
+namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 {
     using System.Collections.Generic;
     using System.Net.Http;
@@ -317,7 +317,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModu
 // regenerated.
 // </auto-generated>
 
-namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi
+namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 {
     using Microsoft.Rest;
     using Newtonsoft.Json;
@@ -361,7 +361,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModu
 // regenerated.
 // </auto-generated>
 
-namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi
+namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 {
     using System.Collections.Generic;
     using System.Net;
@@ -812,7 +812,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModu
 // regenerated.
 // </auto-generated>
 
-namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi
+namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 {
     using System.Collections.Generic;
     using System.Threading;
@@ -881,7 +881,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModu
 // regenerated.
 // </auto-generated>
 
-namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi
+namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 {
     using System.Collections.Generic;
     using System.Threading;
@@ -973,7 +973,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModu
 // regenerated.
 // </auto-generated>
 
-namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi.Models
+namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Models
 {
     using Newtonsoft.Json;
 
@@ -1023,7 +1023,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModu
 // regenerated.
 // </auto-generated>
 
-namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi.Models
+namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Models
 {
     using System.Collections.Generic;
     using Newtonsoft.Json;
@@ -1133,7 +1133,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModu
 // regenerated.
 // </auto-generated>
 
-namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi.Models
+namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Models
 {
     using Newtonsoft.Json;
 
@@ -1222,7 +1222,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModu
 // regenerated.
 // </auto-generated>
 
-namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi.Models
+namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Models
 {
     using System.Collections.Generic;
     using Newtonsoft.Json;

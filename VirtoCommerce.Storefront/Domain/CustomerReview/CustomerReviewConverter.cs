@@ -1,4 +1,4 @@
-using dtoNamespace = VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi.Models;
+using dtoNamespace = VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Models;
 
 
 namespace VirtoCommerce.Storefront.Domain.CustomerReview

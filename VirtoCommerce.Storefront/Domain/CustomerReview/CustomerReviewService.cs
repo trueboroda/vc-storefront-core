@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
 
 using PagedList.Core;
-using VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi;
+using VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi;
 using VirtoCommerce.Storefront.Infrastructure;
 using VirtoCommerce.Storefront.Model.Caching;
 using VirtoCommerce.Storefront.Model.Common.Caching;
