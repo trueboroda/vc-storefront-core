@@ -280,7 +280,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModu
         /// </summary>
         private void Initialize()
         {
-            CustomerReviews = new ManagedModule(this);
+            CustomerReviews = new CustomerReviewsModule(this);
             BaseUri = new System.Uri("http://localhost/admin");
             SerializationSettings = new JsonSerializerSettings
             {
@@ -376,7 +376,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModu
     /// <summary>
     /// ManagedModule operations.
     /// </summary>
-    public partial class ManagedModule : IServiceOperations<CustomerReviewsModuleWebRESTAPIdocumentation>, ICustomerReviews
+    public partial class CustomerReviewsModule : IServiceOperations<CustomerReviewsModuleWebRESTAPIdocumentation>, ICustomerReviews
     {
         /// <summary>
         /// Initializes a new instance of the ManagedModule class.
@@ -387,7 +387,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModu
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public ManagedModule(CustomerReviewsModuleWebRESTAPIdocumentation client)
+        public CustomerReviewsModule(CustomerReviewsModuleWebRESTAPIdocumentation client)
         {
             if (client == null)
             {
@@ -891,7 +891,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModu
     /// <summary>
     /// Extension methods for ManagedModule.
     /// </summary>
-    public static partial class ManagedModuleExtensions
+    public static partial class CustomerReviewsModuleExtensions
     {
         /// <param name='operations'>
         /// The operations group for this extension method.

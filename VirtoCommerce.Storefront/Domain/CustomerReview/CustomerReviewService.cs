@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Caching.Memory
+using Microsoft.Extensions.Caching.Memory;
 
 using PagedList.Core;
 using VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModule.WebModuleApi;
