@@ -6,13 +6,18 @@
 
 namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 {
-    using System.Collections.Generic;
-    using System.Net.Http;
     using Microsoft.Rest;
     using Microsoft.Rest.Serialization;
+    using Models;
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
-    public partial class CustomerReviewsModuleWebRESTAPIdocumentation : ServiceClient<CustomerReviewsModuleWebRESTAPIdocumentation>, ICustomerReviewsModuleWebRESTAPIdocumentation
+    public partial class CustomerReviewsModuleRESTAPIdocumentation : ServiceClient<CustomerReviewsModuleRESTAPIdocumentation>, ICustomerReviewsModuleRESTAPIdocumentation
     {
         /// <summary>
         /// The base URI of the service.
@@ -37,34 +42,34 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <summary>
         /// Gets the IManagedModule.
         /// </summary>
-        public virtual ICustomerReviews CustomerReviews { get; private set; }
+        public virtual ICustomerReviews ManagedModule { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the CustomerReviewsModuleWebRESTAPIdocumentation class.
+        /// Initializes a new instance of the CustomerReviewsModuleRESTAPIdocumentation class.
         /// </summary>
         /// <param name='httpClient'>
         /// HttpClient to be used
         /// </param>
         /// <param name='disposeHttpClient'>
-        /// True: will dispose the provided httpClient on calling CustomerReviewsModuleWebRESTAPIdocumentation.Dispose(). False: will not dispose provided httpClient</param>
-        protected CustomerReviewsModuleWebRESTAPIdocumentation(HttpClient httpClient, bool disposeHttpClient) : base(httpClient, disposeHttpClient)
+        /// True: will dispose the provided httpClient on calling CustomerReviewsModuleRESTAPIdocumentation.Dispose(). False: will not dispose provided httpClient</param>
+        protected CustomerReviewsModuleRESTAPIdocumentation(HttpClient httpClient, bool disposeHttpClient) : base(httpClient, disposeHttpClient)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the CustomerReviewsModuleWebRESTAPIdocumentation class.
+        /// Initializes a new instance of the CustomerReviewsModuleRESTAPIdocumentation class.
         /// </summary>
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
-        protected CustomerReviewsModuleWebRESTAPIdocumentation(params DelegatingHandler[] handlers) : base(handlers)
+        protected CustomerReviewsModuleRESTAPIdocumentation(params DelegatingHandler[] handlers) : base(handlers)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the CustomerReviewsModuleWebRESTAPIdocumentation class.
+        /// Initializes a new instance of the CustomerReviewsModuleRESTAPIdocumentation class.
         /// </summary>
         /// <param name='rootHandler'>
         /// Optional. The http client handler used to handle http transport.
@@ -72,13 +77,13 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
-        protected CustomerReviewsModuleWebRESTAPIdocumentation(HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : base(rootHandler, handlers)
+        protected CustomerReviewsModuleRESTAPIdocumentation(HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : base(rootHandler, handlers)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the CustomerReviewsModuleWebRESTAPIdocumentation class.
+        /// Initializes a new instance of the CustomerReviewsModuleRESTAPIdocumentation class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -89,7 +94,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        protected CustomerReviewsModuleWebRESTAPIdocumentation(System.Uri baseUri, params DelegatingHandler[] handlers) : this(handlers)
+        protected CustomerReviewsModuleRESTAPIdocumentation(System.Uri baseUri, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (baseUri == null)
             {
@@ -99,7 +104,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         }
 
         /// <summary>
-        /// Initializes a new instance of the CustomerReviewsModuleWebRESTAPIdocumentation class.
+        /// Initializes a new instance of the CustomerReviewsModuleRESTAPIdocumentation class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -113,7 +118,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        protected CustomerReviewsModuleWebRESTAPIdocumentation(System.Uri baseUri, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        protected CustomerReviewsModuleRESTAPIdocumentation(System.Uri baseUri, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (baseUri == null)
             {
@@ -123,7 +128,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         }
 
         /// <summary>
-        /// Initializes a new instance of the CustomerReviewsModuleWebRESTAPIdocumentation class.
+        /// Initializes a new instance of the CustomerReviewsModuleRESTAPIdocumentation class.
         /// </summary>
         /// <param name='credentials'>
         /// Required. Subscription credentials which uniquely identify client subscription.
@@ -134,7 +139,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public CustomerReviewsModuleWebRESTAPIdocumentation(ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
+        public CustomerReviewsModuleRESTAPIdocumentation(ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (credentials == null)
             {
@@ -148,7 +153,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         }
 
         /// <summary>
-        /// Initializes a new instance of the CustomerReviewsModuleWebRESTAPIdocumentation class.
+        /// Initializes a new instance of the CustomerReviewsModuleRESTAPIdocumentation class.
         /// </summary>
         /// <param name='credentials'>
         /// Required. Subscription credentials which uniquely identify client subscription.
@@ -157,11 +162,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// HttpClient to be used
         /// </param>
         /// <param name='disposeHttpClient'>
-        /// True: will dispose the provided httpClient on calling CustomerReviewsModuleWebRESTAPIdocumentation.Dispose(). False: will not dispose provided httpClient</param>
+        /// True: will dispose the provided httpClient on calling CustomerReviewsModuleRESTAPIdocumentation.Dispose(). False: will not dispose provided httpClient</param>
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public CustomerReviewsModuleWebRESTAPIdocumentation(ServiceClientCredentials credentials, HttpClient httpClient, bool disposeHttpClient) : this(httpClient, disposeHttpClient)
+        public CustomerReviewsModuleRESTAPIdocumentation(ServiceClientCredentials credentials, HttpClient httpClient, bool disposeHttpClient) : this(httpClient, disposeHttpClient)
         {
             if (credentials == null)
             {
@@ -175,7 +180,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         }
 
         /// <summary>
-        /// Initializes a new instance of the CustomerReviewsModuleWebRESTAPIdocumentation class.
+        /// Initializes a new instance of the CustomerReviewsModuleRESTAPIdocumentation class.
         /// </summary>
         /// <param name='credentials'>
         /// Required. Subscription credentials which uniquely identify client subscription.
@@ -189,7 +194,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public CustomerReviewsModuleWebRESTAPIdocumentation(ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        public CustomerReviewsModuleRESTAPIdocumentation(ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (credentials == null)
             {
@@ -203,7 +208,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         }
 
         /// <summary>
-        /// Initializes a new instance of the CustomerReviewsModuleWebRESTAPIdocumentation class.
+        /// Initializes a new instance of the CustomerReviewsModuleRESTAPIdocumentation class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -217,7 +222,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public CustomerReviewsModuleWebRESTAPIdocumentation(System.Uri baseUri, ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
+        public CustomerReviewsModuleRESTAPIdocumentation(System.Uri baseUri, ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (baseUri == null)
             {
@@ -236,7 +241,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         }
 
         /// <summary>
-        /// Initializes a new instance of the CustomerReviewsModuleWebRESTAPIdocumentation class.
+        /// Initializes a new instance of the CustomerReviewsModuleRESTAPIdocumentation class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -253,7 +258,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public CustomerReviewsModuleWebRESTAPIdocumentation(System.Uri baseUri, ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        public CustomerReviewsModuleRESTAPIdocumentation(System.Uri baseUri, ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (baseUri == null)
             {
@@ -280,7 +285,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// </summary>
         private void Initialize()
         {
-            CustomerReviews = new CustomerReviewsModule(this);
+            ManagedModule = new CustomerReviewsModule(this);
             BaseUri = new System.Uri("http://localhost/admin");
             SerializationSettings = new JsonSerializerSettings
             {
@@ -290,7 +295,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
                 NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore,
                 ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize,
                 ContractResolver = new ReadOnlyJsonContractResolver(),
-                Converters = new List<JsonConverter>
+                Converters = new  List<JsonConverter>
                     {
                         new Iso8601TimeSpanConverter()
                     }
@@ -320,11 +325,19 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 {
     using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Models;
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// </summary>
-    public partial interface ICustomerReviewsModuleWebRESTAPIdocumentation : System.IDisposable
+    public partial interface ICustomerReviewsModuleRESTAPIdocumentation : System.IDisposable
     {
         /// <summary>
         /// The base URI of the service.
@@ -351,7 +364,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <summary>
         /// Gets the IManagedModule.
         /// </summary>
-        ICustomerReviews CustomerReviews { get; }
+        ICustomerReviews ManagedModule { get; }
 
     }
 }
@@ -363,20 +376,23 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 
 namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 {
-    using System.Collections.Generic;
-    using System.Net;
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Microsoft.Rest;
     using Microsoft.Rest.Serialization;
     using Models;
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// ManagedModule operations.
     /// </summary>
-    public partial class CustomerReviewsModule : IServiceOperations<CustomerReviewsModuleWebRESTAPIdocumentation>, ICustomerReviews
+    public partial class CustomerReviewsModule : IServiceOperations<CustomerReviewsModuleRESTAPIdocumentation>, ICustomerReviews
     {
         /// <summary>
         /// Initializes a new instance of the ManagedModule class.
@@ -387,7 +403,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public CustomerReviewsModule(CustomerReviewsModuleWebRESTAPIdocumentation client)
+        public CustomerReviewsModule(CustomerReviewsModuleRESTAPIdocumentation client)
         {
             if (client == null)
             {
@@ -397,9 +413,9 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         }
 
         /// <summary>
-        /// Gets a reference to the CustomerReviewsModuleWebRESTAPIdocumentation
+        /// Gets a reference to the CustomerReviewsModuleRESTAPIdocumentation
         /// </summary>
-        public CustomerReviewsModuleWebRESTAPIdocumentation Client { get; private set; }
+        public CustomerReviewsModuleRESTAPIdocumentation Client { get; private set; }
 
         /// <param name='criteria'>
         /// </param>
@@ -454,7 +470,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 
             if (customHeaders != null)
             {
-                foreach (var _header in customHeaders)
+                foreach(var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -466,11 +482,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if (criteria != null)
+            if(criteria != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(criteria, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType =System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -495,12 +511,10 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             if ((int)_statusCode != 200)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null)
-                {
+                if (_httpResponse.Content != null) {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else
-                {
+                else {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -595,7 +609,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 
             if (customHeaders != null)
             {
-                foreach (var _header in customHeaders)
+                foreach(var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -607,11 +621,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 
             // Serialize Request
             string _requestContent = null;
-            if (customerReviews != null)
+            if(customerReviews != null)
             {
                 _requestContent = SafeJsonConvert.SerializeObject(customerReviews, Client.SerializationSettings);
                 _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                _httpRequest.Content.Headers.ContentType =System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
             }
             // Set Credentials
             if (Client.Credentials != null)
@@ -636,12 +650,10 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null)
-                {
+                if (_httpResponse.Content != null) {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else
-                {
+                else {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -737,7 +749,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 
             if (customHeaders != null)
             {
-                foreach (var _header in customHeaders)
+                foreach(var _header in customHeaders)
                 {
                     if (_httpRequest.Headers.Contains(_header.Key))
                     {
@@ -772,12 +784,10 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             if ((int)_statusCode != 204)
             {
                 var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                if (_httpResponse.Content != null)
-                {
+                if (_httpResponse.Content != null) {
                     _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
-                else
-                {
+                else {
                     _responseContent = string.Empty;
                 }
                 ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
@@ -814,11 +824,16 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 
 namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 {
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Models;
+    using Newtonsoft.Json;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Net;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Rest;
-    using Models;
 
     /// <summary>
     /// ManagedModule operations.
@@ -883,87 +898,93 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 
 namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 {
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Models;
+    using Newtonsoft.Json;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Net;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
-    using Models;
 
     /// <summary>
     /// Extension methods for ManagedModule.
     /// </summary>
-    public static partial class CustomerReviewsModuleExtensions
+    public static partial class ManagedModuleExtensions
     {
-        /// <param name='operations'>
-        /// The operations group for this extension method.
-        /// </param>
-        /// <param name='criteria'>
-        /// </param>
-        public static GenericSearchResultCustomerReview SearchCustomerReviews(this ICustomerReviews operations, CustomerReviewSearchCriteria criteria)
-        {
-            return operations.SearchCustomerReviewsAsync(criteria).GetAwaiter().GetResult();
-        }
-
-        /// <param name='operations'>
-        /// The operations group for this extension method.
-        /// </param>
-        /// <param name='criteria'>
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        public static async Task<GenericSearchResultCustomerReview> SearchCustomerReviewsAsync(this ICustomerReviews operations, CustomerReviewSearchCriteria criteria, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            using (var _result = await operations.SearchCustomerReviewsWithHttpMessagesAsync(criteria, null, cancellationToken).ConfigureAwait(false))
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='criteria'>
+            /// </param>
+            public static GenericSearchResultCustomerReview SearchCustomerReviews(this ICustomerReviews operations, CustomerReviewSearchCriteria criteria)
             {
-                return _result.Body;
+                return operations.SearchCustomerReviewsAsync(criteria).GetAwaiter().GetResult();
             }
-        }
 
-        /// <param name='operations'>
-        /// The operations group for this extension method.
-        /// </param>
-        /// <param name='customerReviews'>
-        /// </param>
-        public static void Update(this ICustomerReviews operations, IList<CustomerReview> customerReviews)
-        {
-            operations.UpdateAsync(customerReviews).GetAwaiter().GetResult();
-        }
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='criteria'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<GenericSearchResultCustomerReview> SearchCustomerReviewsAsync(this ICustomerReviews operations, CustomerReviewSearchCriteria criteria, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.SearchCustomerReviewsWithHttpMessagesAsync(criteria, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
 
-        /// <param name='operations'>
-        /// The operations group for this extension method.
-        /// </param>
-        /// <param name='customerReviews'>
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        public static async Task UpdateAsync(this ICustomerReviews operations, IList<CustomerReview> customerReviews, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            (await operations.UpdateWithHttpMessagesAsync(customerReviews, null, cancellationToken).ConfigureAwait(false)).Dispose();
-        }
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='customerReviews'>
+            /// </param>
+            public static void Update(this ICustomerReviews operations, IList<CustomerReview> customerReviews)
+            {
+                operations.UpdateAsync(customerReviews).GetAwaiter().GetResult();
+            }
 
-        /// <param name='operations'>
-        /// The operations group for this extension method.
-        /// </param>
-        /// <param name='ids'>
-        /// </param>
-        public static void Delete(this ICustomerReviews operations, IList<string> ids)
-        {
-            operations.DeleteAsync(ids).GetAwaiter().GetResult();
-        }
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='customerReviews'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task UpdateAsync(this ICustomerReviews operations, IList<CustomerReview> customerReviews, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                (await operations.UpdateWithHttpMessagesAsync(customerReviews, null, cancellationToken).ConfigureAwait(false)).Dispose();
+            }
 
-        /// <param name='operations'>
-        /// The operations group for this extension method.
-        /// </param>
-        /// <param name='ids'>
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        public static async Task DeleteAsync(this ICustomerReviews operations, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            (await operations.DeleteWithHttpMessagesAsync(ids, null, cancellationToken).ConfigureAwait(false)).Dispose();
-        }
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='ids'>
+            /// </param>
+            public static void Delete(this ICustomerReviews operations, IList<string> ids)
+            {
+                operations.DeleteAsync(ids).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='ids'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task DeleteAsync(this ICustomerReviews operations, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                (await operations.DeleteWithHttpMessagesAsync(ids, null, cancellationToken).ConfigureAwait(false)).Dispose();
+            }
 
     }
 }
@@ -975,7 +996,16 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 
 namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Models
 {
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class SortInfo
     {
@@ -1025,8 +1055,16 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Mode
 
 namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Models
 {
-    using System.Collections.Generic;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class CustomerReviewSearchCriteria
     {
@@ -1135,7 +1173,16 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Mode
 
 namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Models
 {
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class CustomerReview
     {
@@ -1224,8 +1271,16 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Mode
 
 namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Models
 {
-    using System.Collections.Generic;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class GenericSearchResultCustomerReview
     {

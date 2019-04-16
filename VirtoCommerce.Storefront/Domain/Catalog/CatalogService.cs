@@ -108,8 +108,10 @@ namespace VirtoCommerce.Storefront.Domain
                         taskList.Add(LoadProductPaymentPlanAsync(allProducts, workContext));
                     }
 
-
-                    taskList.Add(LoadProductCustomerReviewsAsync(allProducts, workContext));
+                    if (workContext.CurrentStore.CustomerReviewsEnabled)
+                    {
+                        taskList.Add(LoadProductCustomerReviewsAsync(allProducts, workContext));
+                    }
 
                     await Task.WhenAll(taskList.ToArray());
 

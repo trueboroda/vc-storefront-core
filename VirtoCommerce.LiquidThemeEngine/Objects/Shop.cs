@@ -1,5 +1,5 @@
-using DotLiquid;
 using System.Runtime.Serialization;
+using DotLiquid;
 using VirtoCommerce.Storefront.Model.Common;
 
 namespace VirtoCommerce.LiquidThemeEngine.Objects
@@ -25,7 +25,7 @@ namespace VirtoCommerce.LiquidThemeEngine.Objects
         [DataMember]
         public string Currency { get; set; }
 
-        
+
         public IMutablePagedList<Collection> Collections { get; set; }
 
         /// <summary>
@@ -109,5 +109,7 @@ namespace VirtoCommerce.LiquidThemeEngine.Objects
         public bool CustomerAccountsOptional { get; set; }
 
         public string Status { get; set; }
+
+        public bool CustomerReviewsEnabled { get; set; }
     }
 }

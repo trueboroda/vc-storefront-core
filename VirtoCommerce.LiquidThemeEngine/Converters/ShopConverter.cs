@@ -1,5 +1,5 @@
-using PagedList.Core;
 using System.Linq;
+using PagedList.Core;
 using VirtoCommerce.LiquidThemeEngine.Objects;
 using VirtoCommerce.Storefront.Model.Common;
 using VirtoCommerce.Storefront.Model.Stores;
@@ -40,6 +40,7 @@ namespace VirtoCommerce.LiquidThemeEngine.Converters
             result.Languages = store.Languages.Select(x => x.ToShopifyModel()).ToArray();
             result.Catalog = store.Catalog;
             result.Status = store.StoreState.ToString();
+            result.CustomerReviewsEnabled = store.CustomerReviewsEnabled;
 
             result.Metafields = new MetaFieldNamespacesCollection(new[]
             {
