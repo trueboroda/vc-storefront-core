@@ -15,11 +15,11 @@ namespace VirtoCommerce.Storefront.Domain.CustomerReview
     {
 
 
-        private readonly ICustomerReviews _customerReviewsApi;
+        private readonly ICustomerReviewsModule _customerReviewsApi;
         private readonly IStorefrontMemoryCache _memoryCache;
         private readonly IApiChangesWatcher _apiChangesWatcher;
 
-        public CustomerReviewService(ICustomerReviews customerReviewsApi, IStorefrontMemoryCache memoryCache, IApiChangesWatcher apiChangesWatcher)
+        public CustomerReviewService(ICustomerReviewsModule customerReviewsApi, IStorefrontMemoryCache memoryCache, IApiChangesWatcher apiChangesWatcher)
         {
             _customerReviewsApi = customerReviewsApi;
             _memoryCache = memoryCache;

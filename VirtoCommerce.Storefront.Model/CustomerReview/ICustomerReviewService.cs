@@ -9,7 +9,5 @@ namespace VirtoCommerce.Storefront.Model.CustomerReviews
 
         Task<IPagedList<CustomerReview>> SearchReviewsAsync(CustomerReviewSearchCriteria criteria);
 
-
-
     }
 }

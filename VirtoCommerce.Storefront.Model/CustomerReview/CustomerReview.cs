@@ -21,5 +21,8 @@ namespace VirtoCommerce.Storefront.Model.CustomerReviews
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
 
+
+        
+
     }
 }

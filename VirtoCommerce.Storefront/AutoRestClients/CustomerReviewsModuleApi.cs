@@ -40,9 +40,9 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         public ServiceClientCredentials Credentials { get; private set; }
 
         /// <summary>
-        /// Gets the IManagedModule.
+        /// Gets the ICustomerReviewsModule.
         /// </summary>
-        public virtual ICustomerReviews ManagedModule { get; private set; }
+        public virtual ICustomerReviewsModule CustomerReviewsModule { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the CustomerReviewsModuleRESTAPIdocumentation class.
@@ -285,7 +285,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// </summary>
         private void Initialize()
         {
-            ManagedModule = new CustomerReviewsModule(this);
+            CustomerReviewsModule = new CustomerReviewsModule(this);
             BaseUri = new System.Uri("http://localhost/admin");
             SerializationSettings = new JsonSerializerSettings
             {
@@ -362,9 +362,9 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
 
 
         /// <summary>
-        /// Gets the IManagedModule.
+        /// Gets the ICustomerReviewsModule.
         /// </summary>
-        ICustomerReviews ManagedModule { get; }
+        ICustomerReviewsModule CustomerReviewsModule { get; }
 
     }
 }
@@ -390,12 +390,12 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
     using System.Threading.Tasks;
 
     /// <summary>
-    /// ManagedModule operations.
+    /// CustomerReviewsModule operations.
     /// </summary>
-    public partial class CustomerReviewsModule : IServiceOperations<CustomerReviewsModuleRESTAPIdocumentation>, ICustomerReviews
+    public partial class CustomerReviewsModule : IServiceOperations<CustomerReviewsModuleRESTAPIdocumentation>, ICustomerReviewsModule
     {
         /// <summary>
-        /// Initializes a new instance of the ManagedModule class.
+        /// Initializes a new instance of the CustomerReviewsModule class.
         /// </summary>
         /// <param name='client'>
         /// Reference to the service client.
@@ -559,6 +559,161 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             return _result;
         }
 
+        /// <param name='ids'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse<IList<CustomerReview>>> GetByIdsWithHttpMessagesAsync(IList<string> ids, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (ids == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "ids");
+            }
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("ids", ids);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "GetByIds", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = Client.BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/CustomerReviews").ToString();
+            List<string> _queryParameters = new List<string>();
+            if (ids != null)
+            {
+                if (ids.Count == 0)
+                {
+                    _queryParameters.Add(string.Format("ids={0}", System.Uri.EscapeDataString(string.Empty)));
+                }
+                else
+                {
+                    foreach (var _item in ids)
+                    {
+                        _queryParameters.Add(string.Format("ids={0}", System.Uri.EscapeDataString("" + _item)));
+                    }
+                }
+            }
+            if (_queryParameters.Count > 0)
+            {
+                _url += "?" + string.Join("&", _queryParameters);
+            }
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("GET");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            // Set Credentials
+            if (Client.Credentials != null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                await Client.Credentials.ProcessHttpRequestAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            }
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await Client.HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 200)
+            {
+                var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                if (_httpResponse.Content != null) {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                }
+                else {
+                    _responseContent = string.Empty;
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse<IList<CustomerReview>>();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<IList<CustomerReview>>(_responseContent, Client.DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
         /// <param name='customerReviews'>
         /// </param>
         /// <param name='customHeaders'>
@@ -602,7 +757,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
-            _httpRequest.Method = new HttpMethod("POST");
+            _httpRequest.Method = new HttpMethod("PUT");
             _httpRequest.RequestUri = new System.Uri(_url);
             // Set Headers
 
@@ -673,6 +828,148 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             var _result = new HttpOperationResponse();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
+        /// <param name='customerReview'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse<CustomerReview>> CreateWithHttpMessagesAsync(CustomerReview customerReview, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (customerReview == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "customerReview");
+            }
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("customerReview", customerReview);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "Create", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = Client.BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/CustomerReviews").ToString();
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("POST");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            if(customerReview != null)
+            {
+                _requestContent = SafeJsonConvert.SerializeObject(customerReview, Client.SerializationSettings);
+                _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
+                _httpRequest.Content.Headers.ContentType =System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+            }
+            // Set Credentials
+            if (Client.Credentials != null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                await Client.Credentials.ProcessHttpRequestAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            }
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await Client.HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 200)
+            {
+                var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                if (_httpResponse.Content != null) {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                }
+                else {
+                    _responseContent = string.Empty;
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse<CustomerReview>();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<CustomerReview>(_responseContent, Client.DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
             if (_shouldTrace)
             {
                 ServiceClientTracing.Exit(_invocationId, _result);
@@ -814,6 +1111,428 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             return _result;
         }
 
+        /// <param name='reviewId'>
+        /// </param>
+        /// <param name='customerId'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse<CustomerReviewEvaluation>> GetCustomerReviewEvaluationForCustomerWithHttpMessagesAsync(string reviewId, string customerId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (reviewId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "reviewId");
+            }
+            if (customerId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "customerId");
+            }
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("reviewId", reviewId);
+                tracingParameters.Add("customerId", customerId);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "GetCustomerReviewEvaluationForCustomer", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = Client.BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/CustomerReviews/evaluetion").ToString();
+            List<string> _queryParameters = new List<string>();
+            if (reviewId != null)
+            {
+                _queryParameters.Add(string.Format("reviewId={0}", System.Uri.EscapeDataString(reviewId)));
+            }
+            if (customerId != null)
+            {
+                _queryParameters.Add(string.Format("customerId={0}", System.Uri.EscapeDataString(customerId)));
+            }
+            if (_queryParameters.Count > 0)
+            {
+                _url += "?" + string.Join("&", _queryParameters);
+            }
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("GET");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            // Set Credentials
+            if (Client.Credentials != null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                await Client.Credentials.ProcessHttpRequestAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            }
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await Client.HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 200)
+            {
+                var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                if (_httpResponse.Content != null) {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                }
+                else {
+                    _responseContent = string.Empty;
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse<CustomerReviewEvaluation>();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<CustomerReviewEvaluation>(_responseContent, Client.DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
+        /// <param name='evaluation'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse> SaveCustomerReviewEvaluationWithHttpMessagesAsync(CustomerReviewEvaluation evaluation, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (evaluation == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "evaluation");
+            }
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("evaluation", evaluation);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "SaveCustomerReviewEvaluation", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = Client.BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/CustomerReviews/evaluation").ToString();
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("POST");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            if(evaluation != null)
+            {
+                _requestContent = SafeJsonConvert.SerializeObject(evaluation, Client.SerializationSettings);
+                _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
+                _httpRequest.Content.Headers.ContentType =System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+            }
+            // Set Credentials
+            if (Client.Credentials != null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                await Client.Credentials.ProcessHttpRequestAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            }
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await Client.HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 204)
+            {
+                var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                if (_httpResponse.Content != null) {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                }
+                else {
+                    _responseContent = string.Empty;
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
+        /// <param name='productId'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse<ProductRating>> GetProductRatingWithHttpMessagesAsync(string productId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (productId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "productId");
+            }
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("productId", productId);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "GetProductRating", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = Client.BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/CustomerReviews/productrating").ToString();
+            List<string> _queryParameters = new List<string>();
+            if (productId != null)
+            {
+                _queryParameters.Add(string.Format("productId={0}", System.Uri.EscapeDataString(productId)));
+            }
+            if (_queryParameters.Count > 0)
+            {
+                _url += "?" + string.Join("&", _queryParameters);
+            }
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("GET");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            // Set Credentials
+            if (Client.Credentials != null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                await Client.Credentials.ProcessHttpRequestAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            }
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await Client.HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 200)
+            {
+                var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                if (_httpResponse.Content != null) {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                }
+                else {
+                    _responseContent = string.Empty;
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse<ProductRating>();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<ProductRating>(_responseContent, Client.DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
     }
 }
 // <auto-generated>
@@ -836,9 +1555,9 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
     using System.Threading.Tasks;
 
     /// <summary>
-    /// ManagedModule operations.
+    /// CustomerReviewsModule operations.
     /// </summary>
-    public partial interface ICustomerReviews
+    public partial interface ICustomerReviewsModule
     {
         /// <param name='criteria'>
         /// </param>
@@ -858,6 +1577,24 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// Thrown when a required parameter is null
         /// </exception>
         Task<HttpOperationResponse<GenericSearchResultCustomerReview>> SearchCustomerReviewsWithHttpMessagesAsync(CustomerReviewSearchCriteria criteria, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <param name='ids'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="Microsoft.Rest.HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        Task<HttpOperationResponse<IList<CustomerReview>>> GetByIdsWithHttpMessagesAsync(IList<string> ids, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <param name='customerReviews'>
         /// </param>
         /// <param name='customHeaders'>
@@ -873,6 +1610,24 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// Thrown when a required parameter is null
         /// </exception>
         Task<HttpOperationResponse> UpdateWithHttpMessagesAsync(IList<CustomerReview> customerReviews, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <param name='customerReview'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="Microsoft.Rest.HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        Task<HttpOperationResponse<CustomerReview>> CreateWithHttpMessagesAsync(CustomerReview customerReview, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <param name='ids'>
         /// </param>
         /// <param name='customHeaders'>
@@ -888,6 +1643,59 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// Thrown when a required parameter is null
         /// </exception>
         Task<HttpOperationResponse> DeleteWithHttpMessagesAsync(IList<string> ids, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <param name='reviewId'>
+        /// </param>
+        /// <param name='customerId'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="Microsoft.Rest.HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        Task<HttpOperationResponse<CustomerReviewEvaluation>> GetCustomerReviewEvaluationForCustomerWithHttpMessagesAsync(string reviewId, string customerId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <param name='evaluation'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="Microsoft.Rest.HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        Task<HttpOperationResponse> SaveCustomerReviewEvaluationWithHttpMessagesAsync(CustomerReviewEvaluation evaluation, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <param name='productId'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="Microsoft.Rest.HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        Task<HttpOperationResponse<ProductRating>> GetProductRatingWithHttpMessagesAsync(string productId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }
 // <auto-generated>
@@ -910,16 +1718,16 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Extension methods for ManagedModule.
+    /// Extension methods for CustomerReviewsModule.
     /// </summary>
-    public static partial class ManagedModuleExtensions
+    public static partial class CustomerReviewsModuleExtensions
     {
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
             /// <param name='criteria'>
             /// </param>
-            public static GenericSearchResultCustomerReview SearchCustomerReviews(this ICustomerReviews operations, CustomerReviewSearchCriteria criteria)
+            public static GenericSearchResultCustomerReview SearchCustomerReviews(this ICustomerReviewsModule operations, CustomerReviewSearchCriteria criteria)
             {
                 return operations.SearchCustomerReviewsAsync(criteria).GetAwaiter().GetResult();
             }
@@ -932,7 +1740,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<GenericSearchResultCustomerReview> SearchCustomerReviewsAsync(this ICustomerReviews operations, CustomerReviewSearchCriteria criteria, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<GenericSearchResultCustomerReview> SearchCustomerReviewsAsync(this ICustomerReviewsModule operations, CustomerReviewSearchCriteria criteria, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.SearchCustomerReviewsWithHttpMessagesAsync(criteria, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -943,9 +1751,35 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
+            /// <param name='ids'>
+            /// </param>
+            public static IList<CustomerReview> GetByIds(this ICustomerReviewsModule operations, IList<string> ids)
+            {
+                return operations.GetByIdsAsync(ids).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='ids'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<CustomerReview>> GetByIdsAsync(this ICustomerReviewsModule operations, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetByIdsWithHttpMessagesAsync(ids, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
             /// <param name='customerReviews'>
             /// </param>
-            public static void Update(this ICustomerReviews operations, IList<CustomerReview> customerReviews)
+            public static void Update(this ICustomerReviewsModule operations, IList<CustomerReview> customerReviews)
             {
                 operations.UpdateAsync(customerReviews).GetAwaiter().GetResult();
             }
@@ -958,7 +1792,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task UpdateAsync(this ICustomerReviews operations, IList<CustomerReview> customerReviews, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task UpdateAsync(this ICustomerReviewsModule operations, IList<CustomerReview> customerReviews, CancellationToken cancellationToken = default(CancellationToken))
             {
                 (await operations.UpdateWithHttpMessagesAsync(customerReviews, null, cancellationToken).ConfigureAwait(false)).Dispose();
             }
@@ -966,9 +1800,35 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
+            /// <param name='customerReview'>
+            /// </param>
+            public static CustomerReview Create(this ICustomerReviewsModule operations, CustomerReview customerReview)
+            {
+                return operations.CreateAsync(customerReview).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='customerReview'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<CustomerReview> CreateAsync(this ICustomerReviewsModule operations, CustomerReview customerReview, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.CreateWithHttpMessagesAsync(customerReview, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
             /// <param name='ids'>
             /// </param>
-            public static void Delete(this ICustomerReviews operations, IList<string> ids)
+            public static void Delete(this ICustomerReviewsModule operations, IList<string> ids)
             {
                 operations.DeleteAsync(ids).GetAwaiter().GetResult();
             }
@@ -981,9 +1841,88 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task DeleteAsync(this ICustomerReviews operations, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task DeleteAsync(this ICustomerReviewsModule operations, IList<string> ids, CancellationToken cancellationToken = default(CancellationToken))
             {
                 (await operations.DeleteWithHttpMessagesAsync(ids, null, cancellationToken).ConfigureAwait(false)).Dispose();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='reviewId'>
+            /// </param>
+            /// <param name='customerId'>
+            /// </param>
+            public static CustomerReviewEvaluation GetCustomerReviewEvaluationForCustomer(this ICustomerReviewsModule operations, string reviewId, string customerId)
+            {
+                return operations.GetCustomerReviewEvaluationForCustomerAsync(reviewId, customerId).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='reviewId'>
+            /// </param>
+            /// <param name='customerId'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<CustomerReviewEvaluation> GetCustomerReviewEvaluationForCustomerAsync(this ICustomerReviewsModule operations, string reviewId, string customerId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetCustomerReviewEvaluationForCustomerWithHttpMessagesAsync(reviewId, customerId, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='evaluation'>
+            /// </param>
+            public static void SaveCustomerReviewEvaluation(this ICustomerReviewsModule operations, CustomerReviewEvaluation evaluation)
+            {
+                operations.SaveCustomerReviewEvaluationAsync(evaluation).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='evaluation'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task SaveCustomerReviewEvaluationAsync(this ICustomerReviewsModule operations, CustomerReviewEvaluation evaluation, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                (await operations.SaveCustomerReviewEvaluationWithHttpMessagesAsync(evaluation, null, cancellationToken).ConfigureAwait(false)).Dispose();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='productId'>
+            /// </param>
+            public static ProductRating GetProductRating(this ICustomerReviewsModule operations, string productId)
+            {
+                return operations.GetProductRatingAsync(productId).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='productId'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ProductRating> GetProductRatingAsync(this ICustomerReviewsModule operations, string productId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetProductRatingWithHttpMessagesAsync(productId, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
             }
 
     }
@@ -1197,12 +2136,15 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Mode
         /// <summary>
         /// Initializes a new instance of the CustomerReview class.
         /// </summary>
-        public CustomerReview(string authorNickname = default(string), string content = default(string), bool? isActive = default(bool?), string productId = default(string), System.DateTime? createdDate = default(System.DateTime?), System.DateTime? modifiedDate = default(System.DateTime?), string createdBy = default(string), string modifiedBy = default(string), string id = default(string))
+        public CustomerReview(string authorNickname = default(string), string content = default(string), bool? isActive = default(bool?), string productId = default(string), int? rating = default(int?), int? likeCount = default(int?), int? dislikeCount = default(int?), System.DateTime? createdDate = default(System.DateTime?), System.DateTime? modifiedDate = default(System.DateTime?), string createdBy = default(string), string modifiedBy = default(string), string id = default(string))
         {
             AuthorNickname = authorNickname;
             Content = content;
             IsActive = isActive;
             ProductId = productId;
+            Rating = rating;
+            LikeCount = likeCount;
+            DislikeCount = dislikeCount;
             CreatedDate = createdDate;
             ModifiedDate = modifiedDate;
             CreatedBy = createdBy;
@@ -1238,6 +2180,21 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Mode
 
         /// <summary>
         /// </summary>
+        [JsonProperty(PropertyName = "rating")]
+        public int? Rating { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "likeCount")]
+        public int? LikeCount { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "dislikeCount")]
+        public int? DislikeCount { get; set; }
+
+        /// <summary>
+        /// </summary>
         [JsonProperty(PropertyName = "createdDate")]
         public System.DateTime? CreatedDate { get; set; }
 
@@ -1260,6 +2217,154 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Mode
         /// </summary>
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
+
+    }
+}
+// <auto-generated>
+// Code generated by Microsoft (R) AutoRest Code Generator.
+// Changes may cause incorrect behavior and will be lost if the code is
+// regenerated.
+// </auto-generated>
+
+namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Models
+{
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    public partial class CustomerReviewEvaluation
+    {
+        /// <summary>
+        /// Initializes a new instance of the CustomerReviewEvaluation class.
+        /// </summary>
+        public CustomerReviewEvaluation()
+        {
+            CustomInit();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the CustomerReviewEvaluation class.
+        /// </summary>
+        public CustomerReviewEvaluation(bool? reviewIsLiked = default(bool?), string customerReviewId = default(string), string customerId = default(string), System.DateTime? createdDate = default(System.DateTime?), System.DateTime? modifiedDate = default(System.DateTime?), string createdBy = default(string), string modifiedBy = default(string), string id = default(string))
+        {
+            ReviewIsLiked = reviewIsLiked;
+            CustomerReviewId = customerReviewId;
+            CustomerId = customerId;
+            CreatedDate = createdDate;
+            ModifiedDate = modifiedDate;
+            CreatedBy = createdBy;
+            ModifiedBy = modifiedBy;
+            Id = id;
+            CustomInit();
+        }
+
+        /// <summary>
+        /// An initialization method that performs custom operations like setting defaults
+        /// </summary>
+        partial void CustomInit();
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "reviewIsLiked")]
+        public bool? ReviewIsLiked { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "customerReviewId")]
+        public string CustomerReviewId { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "customerId")]
+        public string CustomerId { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "createdDate")]
+        public System.DateTime? CreatedDate { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "modifiedDate")]
+        public System.DateTime? ModifiedDate { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "createdBy")]
+        public string CreatedBy { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "modifiedBy")]
+        public string ModifiedBy { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+
+    }
+}
+// <auto-generated>
+// Code generated by Microsoft (R) AutoRest Code Generator.
+// Changes may cause incorrect behavior and will be lost if the code is
+// regenerated.
+// </auto-generated>
+
+namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi.Models
+{
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    public partial class ProductRating
+    {
+        /// <summary>
+        /// Initializes a new instance of the ProductRating class.
+        /// </summary>
+        public ProductRating()
+        {
+            CustomInit();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the ProductRating class.
+        /// </summary>
+        public ProductRating(string productId = default(string), double? rating = default(double?))
+        {
+            ProductId = productId;
+            Rating = rating;
+            CustomInit();
+        }
+
+        /// <summary>
+        /// An initialization method that performs custom operations like setting defaults
+        /// </summary>
+        partial void CustomInit();
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "productId")]
+        public string ProductId { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "rating")]
+        public double? Rating { get; set; }
 
     }
 }

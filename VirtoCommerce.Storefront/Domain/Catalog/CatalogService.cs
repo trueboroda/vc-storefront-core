@@ -393,7 +393,11 @@ namespace VirtoCommerce.Storefront.Domain
                         Sort = SortInfo.ToString(sortInfos)
                     };
 
-                    return _customerReviewService.SearchReviews(criteria);
+                    //todo: _
+
+                    var reviews = _customerReviewService.SearchReviews(criteria);
+
+                    return reviews;
                 }, 1, CustomerReviewSearchCriteria.DefaultPageSize);
             }
 
