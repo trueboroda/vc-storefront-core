@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using DotLiquid;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -17,7 +12,7 @@ namespace VirtoCommerce.LiquidThemeEngine.Filters
         {
             return input ?? value;
         }
- 
+
         public static string Json(object input)
         {
             if (input == null)
@@ -32,6 +27,27 @@ namespace VirtoCommerce.LiquidThemeEngine.Filters
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                     ContractResolver = new RubyContractResolver(),
+                });
+
+            return serializedString;
+        }
+
+        public static string Json2(object input)
+        {
+            if (input == null)
+            {
+                return null;
+            }
+
+            var serializedString = JsonConvert.SerializeObject(
+                input,
+                new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    ContractResolver = new DefaultContractResolver
+                    {
+                        NamingStrategy = new CamelCaseNamingStrategy()
+                    }
                 });
 
             return serializedString;

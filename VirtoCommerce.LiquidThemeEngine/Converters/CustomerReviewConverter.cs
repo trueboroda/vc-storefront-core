@@ -44,7 +44,10 @@ namespace VirtoCommerce.LiquidThemeEngine.Converters
                     {
                         CustomerId = evaluation.CustomerId,
                         CustomerReviewId = evaluation.CustomerReviewId,
-                        ReviewIsLiked = evaluation.ReviewIsLiked
+                        ReviewIsLiked = evaluation.ReviewIsLiked,
+
+                        CreatedBy = evaluation.CreatedBy,
+                        CreatedDate = evaluation.CreatedDate
                     };
                 }
 

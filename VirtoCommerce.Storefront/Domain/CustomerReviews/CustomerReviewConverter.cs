@@ -14,20 +14,32 @@ namespace VirtoCommerce.Storefront.Domain.CustomerReviews
                 Id = dto.Id,
                 CustomerReviewId = dto.CustomerReviewId,
                 CustomerId = dto.CustomerId,
-                ReviewIsLiked = dto.ReviewIsLiked.GetValueOrDefault()
+                ReviewIsLiked = dto.ReviewIsLiked.GetValueOrDefault(),
+
+                CreatedDate = dto.CreatedDate.GetValueOrDefault(),
+                ModifiedDate = dto.ModifiedDate,
+                CreatedBy = dto.CreatedBy,
+                ModifiedBy = dto.ModifiedBy
+
             };
             return result;
         }
 
 
-        public static platformDto.CustomerReviewEvaluation ToEvaluationDto(this models.CustomerReviewEvaluation dto)
+        public static platformDto.CustomerReviewEvaluation ToEvaluationDto(this models.CustomerReviewEvaluation model)
         {
             var result = new platformDto.CustomerReviewEvaluation()
             {
-                Id = dto.Id,
-                CustomerReviewId = dto.CustomerReviewId,
-                CustomerId = dto.CustomerId,
-                ReviewIsLiked = dto.ReviewIsLiked
+                Id = model.Id,
+                CustomerReviewId = model.CustomerReviewId,
+                CustomerId = model.CustomerId,
+                ReviewIsLiked = model.ReviewIsLiked,
+
+
+                CreatedBy = model.CreatedBy,
+                CreatedDate = model.CreatedDate,
+                ModifiedDate = model.ModifiedDate,
+                ModifiedBy = model.ModifiedBy
             };
             return result;
         }
@@ -45,8 +57,8 @@ namespace VirtoCommerce.Storefront.Domain.CustomerReviews
                 LikeCount = dto.LikeCount.GetValueOrDefault(),
                 DislikeCount = dto.DislikeCount.GetValueOrDefault(),
                 CreatedDate = dto.CreatedDate.GetValueOrDefault(),
-                ModifiedDate = dto.ModifiedDate,
                 CreatedBy = dto.CreatedBy,
+                ModifiedDate = dto.ModifiedDate,
                 ModifiedBy = dto.ModifiedBy
 
             };
@@ -64,6 +76,9 @@ namespace VirtoCommerce.Storefront.Domain.CustomerReviews
                 IsActive = model.IsActive,
                 ProductId = model.ProductId,
                 Rating = model.Rating,
+
+                CreatedBy = model.CreatedBy,
+                CreatedDate = model.CreatedDate
 
             };
 

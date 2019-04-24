@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using VirtoCommerce.Storefront.Infrastructure;
@@ -9,6 +10,10 @@ using VirtoCommerce.Storefront.Model.CustomerReviews;
 
 namespace VirtoCommerce.Storefront.Controllers.Api
 {
+
+    /// <summary>
+    /// customer review api for Theme
+    /// </summary>
     [StorefrontApiRoute("customerreviews")]
     public class ApiCustomerReviewController : StorefrontControllerBase
     {
@@ -29,6 +34,10 @@ namespace VirtoCommerce.Storefront.Controllers.Api
             {
                 return Forbid();
             }
+
+            model.CreatedBy = WorkContext.CurrentUser.Id;
+            model.CreatedDate = DateTime.UtcNow;
+
             var createdReview = await _customerReviewService.CreateCustomerReviewAsync(model);
             return Ok(createdReview);
         }
@@ -53,16 +62,29 @@ namespace VirtoCommerce.Storefront.Controllers.Api
         }
 
 
-        [HttpPut("evaluation")]
+        [HttpPut("evaluation/{productId}")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ApplyCustomerReviewEvaluation([FromBody]CustomerReviewEvaluation evaluation)
+        public async Task<ActionResult> ApplyCustomerReviewEvaluation(string productId, [FromBody]CustomerReviewEvaluation evaluation)
         {
             if (!WorkContext.CurrentUser.IsRegisteredUser)
             {
                 return Forbid();
             }
-            await _customerReviewService.SaveEvaluationAsync(WorkContext.CurrentProduct.Id, evaluation);
-            return Ok();
+
+            if (evaluation.CreatedBy == null)
+            {
+                evaluation.CreatedBy = WorkContext.CurrentUser.Id;
+                evaluation.CreatedDate = DateTime.UtcNow;
+            }
+            else
+            {
+                evaluation.ModifiedBy = WorkContext.CurrentUser.Id;
+                evaluation.ModifiedDate = DateTime.UtcNow;
+            }
+
+
+            await _customerReviewService.SaveEvaluationAsync(productId, evaluation);
+            return Ok(evaluation);
         }
 
 
