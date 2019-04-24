@@ -321,5 +321,7 @@ namespace VirtoCommerce.LiquidThemeEngine.Objects
         /// </summary>
         public CustomerReview[] CustomerReviews { get; set; }
 
+        public double? CustomersRating { get; set; }
+
     }
 }

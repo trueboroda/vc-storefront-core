@@ -135,6 +135,7 @@ namespace VirtoCommerce.LiquidThemeEngine.Converters
             result.Length = product.Length;
             result.Outline = product.Outline;
             result.AvailableQuantity = product.AvailableQuantity;
+            result.CustomersRating = product.CustomersRating;
 
             if (product.Associations != null)
             {

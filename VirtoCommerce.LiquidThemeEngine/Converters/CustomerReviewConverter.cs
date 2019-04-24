@@ -23,12 +23,30 @@ namespace VirtoCommerce.LiquidThemeEngine.Converters
             {
                 result = new CustomerReview()
                 {
+                    Id = review.Id,
                     AuthorNickname = review.AuthorNickname,
                     Content = review.Content,
                     IsActive = review.IsActive,
                     ProductId = review.ProductId,
-                    CreatedDate = review.CreatedDate
+                    CreatedDate = review.CreatedDate,
+
+                    Rating = review.Rating,
+                    LikeCount = review.LikeCount,
+                    DislikeCount = review.DislikeCount
+
+
                 };
+                var evaluation = review.CurrentUserEvaluation;
+                if (evaluation != null)
+                {
+
+                    result.CurrentUserEvaluation = new CustomerReviewEvaluation()
+                    {
+                        CustomerId = evaluation.CustomerId,
+                        CustomerReviewId = evaluation.CustomerReviewId,
+                        ReviewIsLiked = evaluation.ReviewIsLiked
+                    };
+                }
 
             }
 

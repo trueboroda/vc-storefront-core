@@ -110,6 +110,7 @@ namespace VirtoCommerce.Storefront.Domain
 
                     if (workContext.CurrentStore.CustomerReviewsEnabled)
                     {
+                        taskList.Add(LoadProductRatingAsync(allProducts));
                         taskList.Add(LoadProductCustomerReviewsAsync(allProducts, workContext));
                     }
 
@@ -374,7 +375,8 @@ namespace VirtoCommerce.Storefront.Domain
             return Task.CompletedTask;
         }
 
-        protected virtual Task LoadProductCustomerReviewsAsync(List<Product> products, WorkContext workContext)
+
+        protected virtual async Task LoadProductRatingAsync(List<Product> products)
         {
             if (products == null)
             {
@@ -383,19 +385,47 @@ namespace VirtoCommerce.Storefront.Domain
 
             foreach (var product in products)
             {
-                product.CustomerReviews = new MutablePagedList<Model.CustomerReviews.CustomerReview>((pageNumber, pageSize, sortInfos) =>
+                var rating = await _customerReviewService.GetProductRatingAsync(product.Id);
+                product.CustomersRating = rating;
+            }
+
+        }
+
+        protected Task LoadProductCustomerReviewsAsync(List<Product> products, WorkContext workContext)
+        {
+            if (products == null)
+            {
+                throw new ArgumentNullException(nameof(products));
+            }
+
+            foreach (var product in products)
+            {
+                product.CustomerReviews = new MutablePagedList<CustomerReview>((pageNumber, pageSize, sortInfos) =>
                 {
                     var criteria = new CustomerReviewSearchCriteria
                     {
+
                         ProductIds = new[] { product.Id },
                         PageNumber = pageNumber,
                         PageSize = pageSize,
                         Sort = SortInfo.ToString(sortInfos)
                     };
 
-                    //todo: _
 
                     var reviews = _customerReviewService.SearchReviews(criteria);
+
+                    if (workContext.CurrentUser.IsRegisteredUser)
+                    {
+                        var currentUserId = workContext.CurrentUser.Id;
+                        foreach (var review in reviews)
+                        {
+                            var userReviewEvaluation = _customerReviewService.GetCustomerReviewEvaluationForCustomerAsync(review.Id, currentUserId)
+                                                        .GetAwaiter()
+                                                        .GetResult();
+
+                            review.CurrentUserEvaluation = userReviewEvaluation;
+                        }
+                    }
 
                     return reviews;
                 }, 1, CustomerReviewSearchCriteria.DefaultPageSize);
