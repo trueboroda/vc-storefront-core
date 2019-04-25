@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using PagedList.Core;
 
@@ -15,10 +16,10 @@ namespace VirtoCommerce.Storefront.Model.CustomerReviews
 
         Task DeleteCustomerReviewAsync(CustomerReview review);
 
-        Task<CustomerReviewEvaluation> GetCustomerReviewEvaluationForCustomerAsync(string reviewId, string customerId);
+        Task<IEnumerable<CustomerReviewEvaluation>> GetCustomerReviewsEvaluationsForCustomerAsync(string[] reviewIds, string customerId);
 
         Task SaveEvaluationAsync(string productId, CustomerReviewEvaluation evaluation);
 
-        Task<double?> GetProductRatingAsync(string productId);
+        Task<IEnumerable<ProductRating>> GetProductsRatingsAsync(string[] productIds);
     }
 }

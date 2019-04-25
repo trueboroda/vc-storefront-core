@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
@@ -55,28 +56,32 @@ namespace VirtoCommerce.Storefront.Domain.CustomerReviews
             CustomerReviewCacheRegion.ExpireCustomerReview(review.ProductId);
         }
 
-        public async Task<CustomerReviewEvaluation> GetCustomerReviewEvaluationForCustomerAsync(string reviewId, string customerId)
+        public async Task<IEnumerable<CustomerReviewEvaluation>> GetCustomerReviewsEvaluationsForCustomerAsync(string[] reviewIds, string customerId)
         {
-            var evaluationDto = await _customerReviewsApi.GetCustomerReviewEvaluationForCustomerAsync(reviewId, customerId);
+            var evaluationDto = await _customerReviewsApi.GetCustomerReviewsEvaluationsForCustomerAsync(reviewIds, customerId);
 
-            var result = evaluationDto?.ToEvaluation();
+            var result = evaluationDto.Select(x => x.ToEvaluation()).ToArray();
             return result;
         }
 
-        public async Task<double?> GetProductRatingAsync(string productId)
+        public async Task<IEnumerable<ProductRating>> GetProductsRatingsAsync(string[] productIds)
         {
 
-            var cacheKey = CacheKey.With(GetType(), nameof(GetProductRatingAsync), productId);
+            var cacheKey = CacheKey.With(GetType(), nameof(GetProductsRatingsAsync), string.Join("_", productIds));
 
             return await _memoryCache.GetOrCreateExclusiveAsync(cacheKey, async (cacheEntry) =>
             {
 
+                foreach (var productId in productIds)
+                {
+                    cacheEntry.AddExpirationToken(CustomerReviewCacheRegion.CreateChangeToken(productId));
+                }
 
-                cacheEntry.AddExpirationToken(CustomerReviewCacheRegion.CreateChangeToken(productId));
                 cacheEntry.AddExpirationToken(_apiChangesWatcher.CreateChangeToken());
 
-                var productRatingDto = await _customerReviewsApi.GetProductRatingAsync(productId);
-                var result = productRatingDto?.Rating.GetValueOrDefault();
+                var productsRatingsDto = await _customerReviewsApi.GetProductsRatingsAsync(productIds);
+                var result = productsRatingsDto.Select(x => x.ToProductRating()).ToArray();
+
                 return result;
             });
 

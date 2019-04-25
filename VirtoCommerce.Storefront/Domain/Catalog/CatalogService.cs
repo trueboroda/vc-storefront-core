@@ -383,10 +383,15 @@ namespace VirtoCommerce.Storefront.Domain
                 throw new ArgumentNullException(nameof(products));
             }
 
+            var productIds = products.Select(x => x.Id).ToArray();
+
+            var ratings = await _customerReviewService.GetProductsRatingsAsync(productIds);
+
             foreach (var product in products)
             {
-                var rating = await _customerReviewService.GetProductRatingAsync(product.Id);
-                product.CustomersRating = rating;
+                var rating = ratings.FirstOrDefault(x => x.ProductId == product.Id);
+
+                product.CustomersRating = rating?.Rating ?? 0.0;
             }
 
         }
@@ -406,6 +411,7 @@ namespace VirtoCommerce.Storefront.Domain
                     {
 
                         ProductIds = new[] { product.Id },
+                        IsActive = true,
                         PageNumber = pageNumber,
                         PageSize = pageSize,
                         Sort = SortInfo.ToString(sortInfos)
@@ -417,13 +423,17 @@ namespace VirtoCommerce.Storefront.Domain
                     if (workContext.CurrentUser.IsRegisteredUser)
                     {
                         var currentUserId = workContext.CurrentUser.Id;
-                        foreach (var review in reviews)
-                        {
-                            var userReviewEvaluation = _customerReviewService.GetCustomerReviewEvaluationForCustomerAsync(review.Id, currentUserId)
+
+                        var reviewsIds = reviews.Select(x => x.Id).ToArray();
+
+                        var userReviewsEvaluations = _customerReviewService.GetCustomerReviewsEvaluationsForCustomerAsync(reviewsIds, currentUserId)
                                                         .GetAwaiter()
                                                         .GetResult();
 
-                            review.CurrentUserEvaluation = userReviewEvaluation;
+                        foreach (var review in reviews)
+                        {
+                            var evaluation = userReviewsEvaluations.FirstOrDefault(x => x.CustomerReviewId == review.Id);
+                            review.CurrentUserEvaluation = evaluation;
                         }
                     }
 

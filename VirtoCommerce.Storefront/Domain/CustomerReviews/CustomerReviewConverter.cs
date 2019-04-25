@@ -44,6 +44,16 @@ namespace VirtoCommerce.Storefront.Domain.CustomerReviews
             return result;
         }
 
+        public static models.ProductRating ToProductRating(this platformDto.ProductRating dto)
+        {
+            var result = new models.ProductRating()
+            {
+                ProductId = dto.ProductId,
+                Rating = dto.Rating.GetValueOrDefault()
+            };
+            return result;
+        }
+
         public static models.CustomerReview ToCustomerReview(this platformDto.CustomerReview dto)
         {
             var result = new models.CustomerReview()

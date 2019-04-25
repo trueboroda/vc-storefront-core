@@ -1111,7 +1111,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             return _result;
         }
 
-        /// <param name='reviewId'>
+        /// <param name='reviewIds'>
         /// </param>
         /// <param name='customerId'>
         /// </param>
@@ -1136,11 +1136,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<CustomerReviewEvaluation>> GetCustomerReviewEvaluationForCustomerWithHttpMessagesAsync(string reviewId, string customerId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<CustomerReviewEvaluation>>> GetCustomerReviewsEvaluationsForCustomerWithHttpMessagesAsync(IList<string> reviewIds, string customerId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (reviewId == null)
+            if (reviewIds == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "reviewId");
+                throw new ValidationException(ValidationRules.CannotBeNull, "reviewIds");
             }
             if (customerId == null)
             {
@@ -1153,18 +1153,28 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("reviewId", reviewId);
+                tracingParameters.Add("reviewIds", reviewIds);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "GetCustomerReviewEvaluationForCustomer", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "GetCustomerReviewsEvaluationsForCustomer", tracingParameters);
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
             var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/CustomerReviews/evaluetion").ToString();
             List<string> _queryParameters = new List<string>();
-            if (reviewId != null)
+            if (reviewIds != null)
             {
-                _queryParameters.Add(string.Format("reviewId={0}", System.Uri.EscapeDataString(reviewId)));
+                if (reviewIds.Count == 0)
+                {
+                    _queryParameters.Add(string.Format("reviewIds={0}", System.Uri.EscapeDataString(string.Empty)));
+                }
+                else
+                {
+                    foreach (var _item in reviewIds)
+                    {
+                        _queryParameters.Add(string.Format("reviewIds={0}", System.Uri.EscapeDataString("" + _item)));
+                    }
+                }
             }
             if (customerId != null)
             {
@@ -1239,7 +1249,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<CustomerReviewEvaluation>();
+            var _result = new HttpOperationResponse<IList<CustomerReviewEvaluation>>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -1248,7 +1258,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<CustomerReviewEvaluation>(_responseContent, Client.DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<IList<CustomerReviewEvaluation>>(_responseContent, Client.DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -1388,7 +1398,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             return _result;
         }
 
-        /// <param name='productId'>
+        /// <param name='productIds'>
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -1411,11 +1421,11 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<ProductRating>> GetProductRatingWithHttpMessagesAsync(string productId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<ProductRating>>> GetProductsRatingsWithHttpMessagesAsync(IList<string> productIds, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (productId == null)
+            if (productIds == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "productId");
+                throw new ValidationException(ValidationRules.CannotBeNull, "productIds");
             }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -1424,17 +1434,27 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("productId", productId);
+                tracingParameters.Add("productIds", productIds);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "GetProductRating", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "GetProductsRatings", tracingParameters);
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
             var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/CustomerReviews/productrating").ToString();
             List<string> _queryParameters = new List<string>();
-            if (productId != null)
+            if (productIds != null)
             {
-                _queryParameters.Add(string.Format("productId={0}", System.Uri.EscapeDataString(productId)));
+                if (productIds.Count == 0)
+                {
+                    _queryParameters.Add(string.Format("productIds={0}", System.Uri.EscapeDataString(string.Empty)));
+                }
+                else
+                {
+                    foreach (var _item in productIds)
+                    {
+                        _queryParameters.Add(string.Format("productIds={0}", System.Uri.EscapeDataString("" + _item)));
+                    }
+                }
             }
             if (_queryParameters.Count > 0)
             {
@@ -1505,7 +1525,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<ProductRating>();
+            var _result = new HttpOperationResponse<IList<ProductRating>>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -1514,7 +1534,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProductRating>(_responseContent, Client.DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<IList<ProductRating>>(_responseContent, Client.DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -1643,7 +1663,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// Thrown when a required parameter is null
         /// </exception>
         Task<HttpOperationResponse> DeleteWithHttpMessagesAsync(IList<string> ids, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <param name='reviewId'>
+        /// <param name='reviewIds'>
         /// </param>
         /// <param name='customerId'>
         /// </param>
@@ -1662,7 +1682,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<HttpOperationResponse<CustomerReviewEvaluation>> GetCustomerReviewEvaluationForCustomerWithHttpMessagesAsync(string reviewId, string customerId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<CustomerReviewEvaluation>>> GetCustomerReviewsEvaluationsForCustomerWithHttpMessagesAsync(IList<string> reviewIds, string customerId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <param name='evaluation'>
         /// </param>
         /// <param name='customHeaders'>
@@ -1678,7 +1698,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// Thrown when a required parameter is null
         /// </exception>
         Task<HttpOperationResponse> SaveCustomerReviewEvaluationWithHttpMessagesAsync(CustomerReviewEvaluation evaluation, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <param name='productId'>
+        /// <param name='productIds'>
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -1695,7 +1715,7 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<HttpOperationResponse<ProductRating>> GetProductRatingWithHttpMessagesAsync(string productId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<ProductRating>>> GetProductsRatingsWithHttpMessagesAsync(IList<string> productIds, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }
 // <auto-generated>
@@ -1849,28 +1869,28 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='reviewId'>
+            /// <param name='reviewIds'>
             /// </param>
             /// <param name='customerId'>
             /// </param>
-            public static CustomerReviewEvaluation GetCustomerReviewEvaluationForCustomer(this ICustomerReviewsModule operations, string reviewId, string customerId)
+            public static IList<CustomerReviewEvaluation> GetCustomerReviewsEvaluationsForCustomer(this ICustomerReviewsModule operations, IList<string> reviewIds, string customerId)
             {
-                return operations.GetCustomerReviewEvaluationForCustomerAsync(reviewId, customerId).GetAwaiter().GetResult();
+                return operations.GetCustomerReviewsEvaluationsForCustomerAsync(reviewIds, customerId).GetAwaiter().GetResult();
             }
 
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='reviewId'>
+            /// <param name='reviewIds'>
             /// </param>
             /// <param name='customerId'>
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<CustomerReviewEvaluation> GetCustomerReviewEvaluationForCustomerAsync(this ICustomerReviewsModule operations, string reviewId, string customerId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<CustomerReviewEvaluation>> GetCustomerReviewsEvaluationsForCustomerAsync(this ICustomerReviewsModule operations, IList<string> reviewIds, string customerId, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetCustomerReviewEvaluationForCustomerWithHttpMessagesAsync(reviewId, customerId, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetCustomerReviewsEvaluationsForCustomerWithHttpMessagesAsync(reviewIds, customerId, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -1902,24 +1922,24 @@ namespace VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleApi
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='productId'>
+            /// <param name='productIds'>
             /// </param>
-            public static ProductRating GetProductRating(this ICustomerReviewsModule operations, string productId)
+            public static IList<ProductRating> GetProductsRatings(this ICustomerReviewsModule operations, IList<string> productIds)
             {
-                return operations.GetProductRatingAsync(productId).GetAwaiter().GetResult();
+                return operations.GetProductsRatingsAsync(productIds).GetAwaiter().GetResult();
             }
 
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='productId'>
+            /// <param name='productIds'>
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<ProductRating> GetProductRatingAsync(this ICustomerReviewsModule operations, string productId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<ProductRating>> GetProductsRatingsAsync(this ICustomerReviewsModule operations, IList<string> productIds, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetProductRatingWithHttpMessagesAsync(productId, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetProductsRatingsWithHttpMessagesAsync(productIds, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
